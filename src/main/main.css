@@ -1,0 +1,38 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #222222;
+    margin: 20px;
+    display:block;
+}
+
+.header{
+    background-color: #222222;
+    padding-top: 25px;
+    padding-bottom: 5px;
+}
+  
+.headertitle{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color: white;
+}
+
+.navbar{
+    color: #9d9d9d;
+}
+
+a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+    position: relative;
+    display:block;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: #9d9d9d;
+    text-decoration: none;
+}
