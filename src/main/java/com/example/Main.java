@@ -58,6 +58,11 @@ public class Main {
     return "login";
   }
 
+  @RequestMapping("/search")
+  String search() {
+    return "search";
+  }
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = dataSource.getConnection()) {

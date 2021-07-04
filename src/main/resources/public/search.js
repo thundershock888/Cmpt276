@@ -1,5 +1,5 @@
 //https://www.youtube.com/watch?v=_bj6DKiaH6A&t=438s adapted from here...
-const riotKey = 'api_key = RGAPI-59a4895f-f366-4a35-a00a-17f904382962'
+const riotKey = 'api_key = RGAPI-543bfabd-096d-4e47-bdc8-4867f718c9c3'
 const sp = '%20';
 const fetch = require ("node-fetch");
 
@@ -57,4 +57,10 @@ async function fetchSumByNAme(name,ch){
         console.log('ch is not valid');
         return null;
     }
+}
+
+var a = 0;
+function greet (){
+    console.log("hello"+a);
+    a++;
 }
