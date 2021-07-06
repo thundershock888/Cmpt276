@@ -11,19 +11,25 @@
     <div class ="header">
         <div class = "container">
             <h1 class = "headertitle">
-                <strong> LOL Stat Track </strong>
+                <ul class = "navbar">
+                    <strong> LOL Stat Track </strong>
+                    <li><a href = "#home">Home</a></li>
+                    <li><a th:href="@{/login}">Login</a></li>
+                   <!-- <a th:href="@{/search}">Search</a>--> 
+                </ul>
             </h1>
         </div>
     </div>
 
     <nav class ="nav bar navbar-default navbar-static-top navbar-inverse">
         <div class = "container">
-            <ul class = "navbar">
-                <a href = "#home">Home</a>
-                <a th:href="@{/login}">Login</a>
-                <a th:href="@{/search}">Search</a>
-
-            </ul>
+            <!---not finished, not linked to anything-->
+            <div class = "center">
+            <h1 class = "headertitle"> Search </h1>
+            <input type="text" placeholder="Enter Summoner" name="search">
+            <input type="submit" value="Submit"></button>
+            </div>
+            
         </div>
 
     </nav>

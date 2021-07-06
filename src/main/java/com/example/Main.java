@@ -58,10 +58,10 @@ public class Main {
     return "login";
   }
 
-  @RequestMapping("/search")
+  /*@RequestMapping("/search")
   String search() {
     return "search";
-  }
+  }*/
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
