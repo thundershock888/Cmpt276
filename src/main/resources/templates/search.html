@@ -1,3 +1,4 @@
+<!--testing search html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/main.css">
-    <script src="./summ.js" defer></script>
     <title>Search</title>
 </head>
 <body>
     <h1 class = "headertitle"> Search </h1>
     <!---not finished, not linked to anything-->
-        <input type="text" placeholder="Enter Summoner" name="search">
+        <input type="text" placeholder="Enter Summoner" name="searchSumm">
         <input type="submit" value="Submit">
-        <button onclick="httpGet()">delicius data</button>
+        <button onclick="httpGet()">Info about DELICIOUSMILKGG</button>
+        <p class = "headertitle" id="demo"> </p>
 
+        <script>
+            function httpGet() {
+                var xmlHttp = new XMLHttpRequest();
+              xmlHttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("demo").innerHTML = this.responseText;
+                }
+              };
+                xmlHttp.open("GET", "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/DELICIOUSMILKGG?api_key=RGAPI-ae821434-576f-4b93-8643-9cb02a5cb145", true);
+                xmlHttp.send();
+                
+            }
+            </script>
 </body>
 </html>
