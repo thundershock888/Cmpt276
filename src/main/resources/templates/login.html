@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>Login / Sign Up Form</title>
+    <title>Login</title>
     
     <!-- link to .css file  -->
     <link rel="stylesheet" href="/stylesheets/login.css">
@@ -34,11 +34,11 @@
 
             <!-- forgot password is not responsive -->
             <p class="form_text">
-                <a href="#" class="form_link">Forgot your password?</a>
+                <a th:href="@{/recover}" class="form_link">Forgot your password?</a>
             </p>
 
             <p class="form_text">
-                <a class="form_link" th:href="@{/SignUp}" id="linkCreateAccount">Don't have an account? Create account</a>
+                <a class="form_link" th:href="@{/signup}" id="linkCreateAccount">Don't have an account? Create account</a>
             </p>
 
         </form>
