@@ -13,8 +13,8 @@
     <div class="container">
 
         <!-- login form -->
-        <form class="form" id="login">
-            <h1 class="form_title">Login</h1>
+        <form class="form" id="signup">
+            <h1 class="form_title">Sign Up</h1>
             
             <div class="form_message form_message_error"></div>
             
@@ -29,17 +29,15 @@
                 <input type="password" class="form_input" autofocus placeholder="Password">
                 <div class="form_input_error_message"></div>
             </div>
+            <div class="form_input_group">
+                <input type="password" class="form_input" autofocus placeholder="Confirm Password">
+                <div class="form_input_error_message"></div>
+            </div>
 
             <button class="form_button" type="submit">Continue</button>
 
-            <!-- forgot password is not responsive -->
-            <p class="form_text">
-                <a href="#" class="form_link">Forgot your password?</a>
-            </p>
 
-            <p class="form_text">
-                <a class="form_link" th:href="@{/SignUp}" id="linkCreateAccount">Don't have an account? Create account</a>
-            </p>
+            
 
         </form>
 
