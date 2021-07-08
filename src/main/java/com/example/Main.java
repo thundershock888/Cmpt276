@@ -62,6 +62,10 @@ public class Main {
   String logintest() {
     return "logintest";
   }
+  @RequestMapping("/logsuccess")
+  String logsucc() {
+    return "logsuccess";
+  }
 
   @RequestMapping("/signup")
   String signup() {

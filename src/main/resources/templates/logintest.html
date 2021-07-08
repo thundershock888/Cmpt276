@@ -1,30 +1,45 @@
 <html>
     <head>
-        <title> Login/ Sign Up Form</title>
+        <title> Form</title>
         <title>Login / Sign Up Form</title>
         <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <link rel="stylesheet" href="/stylesheets/login.css">
         <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
-        <script th:src="@{/js/formfire.js}"></script>
+        
+<script th:src="@{/js/formfire.js}"></script>
         <link rel="shortcut icon" type="image/jpg" href="../../resources/templates/images/lol-icon.png">
-
         
     </head>
 
     <body>
-        <h1>Form</h1>
+        <img id = "backgroundimage" th:src="@{/images/background.jpg}">
+        <div class="container">
+            <h1 class="form_title">Login</h1>
+            <br>
         <div id="formContainer">
-            <div id="header"></div>
+            <div class="form_message form_message_error"></div>
+            <!-- email -->
+            <div class="form_input_group">
+                <input type="email" class="form_input" autofocus placeholder="Email" id="email"/>
+                <div class="form_input_error_message"></div>
+            </div>
+            <!-- Password -->
+            <div class="form_input_group">
+                <input type="password"  class="form_input" autofocus placeholder="Password" id="password"/>
+                <div class="form_input_error_message"></div>
+            </div>
 
-            <input type="email" placeholder="email" id="email"/>
-            <input type="password" placeholder="password" id="password"/>
-
-            <button onclick="signUp()" id="signUp">Sign Up</button>
-            <button onclick="signIn()" id="signIn">Sign In</button>
-            <button onclick="signOut()" id="signOut">Sign Out</button>
+            <button class="form_button" onclick="signIn()" id="signIn">Sign In</button> <p>
+            <button class="form_button" onclick="signUp()" id="signUp">Sign Up</button><p>
+            <button class="form_button" onclick="signOut()" id="signOut">Sign Out</button>
+            </p>
+        </p>
+            
+        
         </div>
-
-
+    </div>
+        
     </body>
 
 </html>

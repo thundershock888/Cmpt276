@@ -4,17 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Home Page</title>
-    <link rel="stylesheet" href="../../resources/public/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
 
-    <link rel="shortcut icon" type="image/jpg" href="../../resources/templates/images/lol-icon.png">
+    <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
 </head>
 
 <body>
     
     <div class="basic-header-1">
         <div class="logo">
-            <img src="../../resources/templates/images/lol-icon.png" height="35" alt="Leagu Of Legends Logo">
+            <img th:src="@{/images/lol-icon.png}" height="35" alt="League Of Legends Logo">
         </div>
     </div>
      
@@ -27,7 +27,7 @@
     <div class="nav">
         <ul>
           <li><a href="#" class="nav-link">Home</a></li>
-          <li><a th:href="@{/login}" class="nav-link">Login</a></li>
+          <li><a th:href="@{/logintest}" class="nav-link">Login</a></li>
           <li><a href="#" class="nav-link">Search</a></li>
           <li><a href="#" class="nav-link">About Us</a></li>
 
@@ -37,7 +37,7 @@
     
 
     <div class = "content">
-        <img id = "backgroundimage" src="images/background.jpg">
+        <img id = "backgroundimage" th:src="@{/images/background.jpg}">
 
         <div class="wrap">
             <div class="search">
