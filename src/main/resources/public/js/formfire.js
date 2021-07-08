@@ -31,7 +31,6 @@
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
     promise.catch(e=>alert(e.message));
     
-    
     //take to another page
   }
 
@@ -41,11 +40,11 @@
     alert("Signed Out");
   }
 
-  auth.onAuthStateChanged(function(user)){
+  auth.onAuthStateChanged(function(user){
       if(user){
           var email = user.email;
           alert("user " + email);
       }else{
           alert("No Active user");
       }
-  }
+  });
