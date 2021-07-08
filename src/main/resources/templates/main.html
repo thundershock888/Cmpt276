@@ -4,35 +4,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Home Page</title>
-    <link rel="stylesheet" href="/stylesheets/main.css">
-    <link rel="shortcut icon" type="image/jpg" href="./images/icon.jpg">
-    
+    <link rel="stylesheet" href="../../resources/public/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+
+    <link rel="shortcut icon" type="image/jpg" href="../../resources/templates/images/lol-icon.png">
 </head>
 
 <body>
-    <div class ="header">
-        <div class = "container">
-            <h1 class = "headertitle">
-                <ul class = "navbar">
-                    <strong> LOL Stat Track </strong>
-                    <li><a href = "#home">Home</a></li>
-                    <li><a th:href="@{/login}">Login</a></li>
-                   <!-- <a th:href="@{/search}">Search</a>--> 
-                </ul>
-            </h1>
+    
+    <div class="basic-header-1">
+        <div class="logo">
+            <img src="../../resources/templates/images/lol-icon.png" height="35" alt="Leagu Of Legends Logo">
+        </div>
+    </div>
+     
+    <div class="basic-header-2">
+        <div class="logo-2">
+            <p class="logo-2-text">LOL Stat Track</p>
         </div>
     </div>
 
-    <nav class ="nav bar navbar-default navbar-static-top navbar-inverse">
-        <div class = "container">
-            <!---not finished, not linked to anything-->
-            <div class = "center">
-            <h1 class = "headertitle"> Search </h1>
-            <input type="text" placeholder="Enter Summoner" name="search">
-            <input type="submit" value="Submit" >
-            </div>
-            
-        </div>
+    <div class="nav">
+        <ul>
+          <li><a href="#" class="nav-link">Home</a></li>
+          <li><a href="logintest.html" class="nav-link">Login</a></li>
+          <li><a href="#" class="nav-link">Search</a></li>
+          <li><a href="#" class="nav-link">About Us</a></li>
 
-    </nav>
-</body>
+        </ul>
+      </div>
+
+    
+
+    <div class = "content">
+        <img id = "backgroundimage" src="images/background.jpg">
+
+        <div class="wrap">
+            <div class="search">
+               <input type="text" class="searchTerm" placeholder="Search summoner">
+               <button type="submit" class="searchButton">
+                 <i class="fa fa-search"></i>
+              </button>
+            </div>
+         </div>
+
+        
+    
+    </div>
+    
