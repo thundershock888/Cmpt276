@@ -58,6 +58,11 @@ public class Main {
     return "login";
   }
 
+  @RequestMapping("/logintest")
+  String logintest() {
+    return "logintest";
+  }
+
   @RequestMapping("/signup")
   String signup() {
     return "signup";
