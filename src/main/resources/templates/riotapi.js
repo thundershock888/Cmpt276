@@ -23,7 +23,7 @@ async function getMatchList(accId, champID, queue, endTime, beginTime, endIndex,
 
     let response = await fetch(link);
     response = await response.json();
-    console.log(response.atches[0].champion);
+    console.log(response.matches[0].champion);
 
 }
 
