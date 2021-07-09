@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
 
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
+
+    <script src="riotapi.js"></script>
 </head>
 
 <body>
@@ -41,8 +43,8 @@
 
         <div class="wrap">
             <div class="search">
-               <input type="text" class="searchTerm" placeholder="Search summoner">
-               <button type="submit" class="searchButton">
+               <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
+               <button class="searchButton" onclick="summonerInfo()">
                  <i class="fa fa-search"></i>
               </button>
             </div>
