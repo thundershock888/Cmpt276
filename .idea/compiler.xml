@@ -9,5 +9,14 @@
         <module name="Cmpt276" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Cmpt276" target="1.8" />
+      <module name="wrapper" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Cmpt276" options="-parameters" />
+    </option>
   </component>
 </project>
