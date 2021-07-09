@@ -1,24 +1,78 @@
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAyZFD38P5DS_6_RUSLGjAbbAjce3neO90",
-    authDomain: "login-9a731.firebaseapp.com",
-    projectId: "login-9a731",
-    storageBucket: "login-9a731.appspot.com",
-    messagingSenderId: "25737172393",
-    appId: "1:25737172393:web:4166bfdeff7ebe47fce0b8"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// listen for auth status changes
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log('user logged in: ', user.email);
+    db.collection('infos').get().then(snapshot => {
+      setupinfos(snapshot.docs);
+      setupView(user);
+    }, err=>{
+      console.log(err.message)
+    });
+  } else {
+    setupView();
+    console.log('user logged out');
+    setupinfos([]);
+  }
+})
+
+// signup
+const signupForm = document.querySelector('#signup-form');
+signupForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // get user info
+  const email = signupForm['signup-email'].value;
+  const password = signupForm['signup-password'].value;
+
+  // sign up the user
+  auth.createUserWithEmailAndPassword(email, password).then(cred => {
+    //add user lol id
+    return db.collection('users').doc(cred.user.uid).set({
+      lolid: signupForm['signup-lolid'].value
+    });
+  }).then(()=>{
+    // close the signup modal & reset form
+    const modal = document.querySelector('#modal-signup');
+    M.Modal.getInstance(modal).close();
+    signupForm.reset();
+  });
+});
+
+// logout
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', (e) => {
+  e.preventDefault();
+  auth.signOut();
+});
+
+// login
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // get user info
+  const email = loginForm['login-email'].value;
+  const password = loginForm['login-password'].value;
+
+  // log the user in
+  auth.signInWithEmailAndPassword(email, password).then((cred) => {
+    // close the signup modal & reset form
+    const modal = document.querySelector('#modal-login');
+    M.Modal.getInstance(modal).close();
+    loginForm.reset();
+  });
+
+});
 
 
-  const auth = firebase.auth();
-
+/*
   function signUp(){
-
     var email = document.getElementById("email");
     var password = document.getElementById("password");
 
-    const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+    const promise = auth.createUserWithEmailAndPassword(email.value, password.value).then(cred => {
+      console.log(cred);
+    });
     promise.catch(e=>alert(e.message));
 
     alert("Signed Up");
@@ -30,8 +84,7 @@
 
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
     promise.catch(e=>alert(e.message));
-
-    alert("Active user " + email.value);
+    
     //take to another page
   }
 
@@ -41,13 +94,11 @@
     alert("Signed Out");
   }
 
- 
-  var a = auth.onAuthStateChanged(function(user){
+  auth.onAuthStateChanged(function(user){
       if(user){
           var email = user.email;
-          window.location = "logsuccess";
-          //alert("Active user " + email);
+          alert("user " + email);
       }else{
           alert("No Active user");
       }
-  });
+  });*/
