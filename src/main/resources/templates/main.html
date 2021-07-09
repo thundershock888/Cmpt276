@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
 
-    <script src="riotapi.js"></script>
+    <script th:src="@{./api.js}" defer></script>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
         <div class="wrap">
             <div class="search">
                <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
-               <button class="searchButton" onclick="summonerInfo()">
+               <button class="searchButton" onclick="getInfo()">
                  <i class="fa fa-search"></i>
               </button>
             </div>
