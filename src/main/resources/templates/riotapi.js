@@ -1,4 +1,4 @@
-const key = "api_key=";
+const key = "api_key=RGAPI-f73e856b-f7c1-4661-87bb-40f4e089e45e";
 const sp = "%20";
 const fetch = require("node-fetch");
 const sumName= document.querySelector('input').value;
