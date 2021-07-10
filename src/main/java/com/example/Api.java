@@ -1,3 +1,5 @@
+package com.example;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -11,6 +13,9 @@ public class Api {
     static BufferedReader reader;
     static String line;
     static StringBuffer responseContent = new StringBuffer();
+    public static String fetchDataFromApiGivenUsername(String username){
+        return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key);
+    }
     public static String fetchDataFromApiAsString(String link) {
         try {
             URL url = new URL(link);
