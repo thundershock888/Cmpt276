@@ -12,7 +12,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
-    <script src="@{./api.js}" defer></script>
+    <script data-main="api" src="require.js" defer></script>
+
+
+
 </head>
 
 <body>
@@ -35,9 +38,10 @@
             <li>
                 <div class="search right" >
                     <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
+                
                     <button class="searchButton" onclick="getInfo()">
-                     <i class="fa fa-search"></i>
-                  </button>
+                        <i class="fa fa-search"></i>
+                     </button>
                 </div>
              </li>
              <!-- 
