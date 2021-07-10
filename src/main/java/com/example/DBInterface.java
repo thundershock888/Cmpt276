@@ -1,10 +1,12 @@
+package com.example;
+
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
 class Db{
     Connection connection;
-    Db() {
+    Db() {//constructor for an object that simply containts a db (postgres) connection. Only works locally, not on Heroku, as password and username and hardcoded right now.
         String url = "jdbc:postgresql://localhost:1234/postgres";
         String username = "postgres";
         String password = "root";
@@ -17,7 +19,7 @@ class Db{
         }
     }
 
-    public void initTables() {
+    public void initTables() {//makes a table in the database storing league user id data
         try {
             PreparedStatement stmt = connection.prepareStatement("Create table if not exists users(id varchar(50), accountId varchar(50), puuid varchar(80), name varchar(50))");
             System.out.println("sucsessfully made user table");
@@ -32,7 +34,9 @@ class Db{
 
     }
 
-    public void insertUser (String userData) {
+    public void insertUser (String userData) {// inserts a user, given the string userData which is obtained from an API call to getMatchesBySummonerId(). note that
+        //this call returns match data also, but the first four elements are userdata which is why it can be used to obtain user data.
+        //will also innitiate a database for matches WIP.
         System.out.println(userData);
         String data[] = userData.split(",");
         String id = "";
