@@ -1,17 +1,30 @@
+// adapted from https://www.youtube.com/c/TheNetNinja/videos
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
   if (user) {
     console.log('user logged in: ', user.email);
+            if (user.email == 'admin@gmail.com') {
+              console.log('user logged in: adm', user.email);
+              db.collection('admin-info').get().then(snapshot => {
+              setupadminInfo(snapshot.docs);
+              }, err=>{
+                console.log(err.message)
+              });
+            } else {
+              setupadminInfo([]);
+            }
     db.collection('infos').get().then(snapshot => {
       setupinfos(snapshot.docs);
       setupView(user);
     }, err=>{
       console.log(err.message)
     });
-  } else {
+  }  
+  else {
     setupView();
     console.log('user logged out');
     setupinfos([]);
+    setupadminInfo([]);
   }
 })
 
@@ -35,6 +48,9 @@ signupForm.addEventListener('submit', (e) => {
     const modal = document.querySelector('#modal-signup');
     M.Modal.getInstance(modal).close();
     signupForm.reset();
+    signupForm.querySelector('.error').innerHTML='';
+  }).catch(err=>{
+    signupForm.querySelector('.error').innerHTML=err.message;
   });
 });
 
@@ -60,6 +76,9 @@ loginForm.addEventListener('submit', (e) => {
     const modal = document.querySelector('#modal-login');
     M.Modal.getInstance(modal).close();
     loginForm.reset();
+    loginForm.querySelector('.error').innerHTML='';
+  }).catch(err=>{
+    loginForm.querySelector('.error').innerHTML=err.message;
   });
 
 });

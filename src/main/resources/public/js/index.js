@@ -1,8 +1,10 @@
-// DOM elements
+// adapted from https://www.youtube.com/c/TheNetNinja/videos
+//DOM elements
 const infoList = document.querySelector('.infos');
+const adminOnly = document.querySelector('.admin-info');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
-const accountDet = document.querySelector('.account-details');
+const accountDet = document.querySelector('.account-det');
 
 const setupView = (user)=>{
     if(user){
@@ -48,13 +50,37 @@ const setupinfos = (data) => {
 
 };
 
+// setup admin-info
+const setupadminInfo = (data) => {
+
+  if (data.length) {
+    let html = '';
+    data.forEach(doc => {
+      const info = doc.data();
+      const li = `
+        <li>
+          <div class="collapsible-header grey lighten-4"> ${info.AdminView} </div>
+          <div class="collapsible-body white"> ${info.Admincontent} </div>
+        </li>
+      `;
+      html += li;
+    });
+    adminOnly.innerHTML = html
+  } else {
+    adminOnly.innerHTML = '<h5 class="center-align container grey "> <br> Restricted <p> </p> <br></h5>';
+  }
+
+};
+
+
 // setup materialize components
 document.addEventListener('DOMContentLoaded', function() {
 
   var modals = document.querySelectorAll('.modal');
   M.Modal.init(modals);
 
-  var items = document.querySelectorAll('.collapsible');
-  M.Collapsible.init(items);
+  var ite = document.querySelectorAll('.collapsible');
+  M.Collapsible.init(ite);
+  
 
 });
