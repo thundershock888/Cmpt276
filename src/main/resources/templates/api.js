@@ -1,9 +1,15 @@
+require(['api'], function(){
+
+
 const fetch = require("node-fetch");
+const bluebird = require("bluebird");
+fetch.promise = bluebird;
 
 async function requestSummonerData(summonerName, key){//helps get summoner info 
     const link = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summonerName+"?api_key="+ key;
     const response = await fetch(link);
     let data = await response.json();
+    console.log(data);
     return data;
 }
 
@@ -35,6 +41,7 @@ function getInfo(){//function is called when summoner name is entered and thus
     const name= document.getElementById('summonerSearch').value;
 
 
+
     while(name.includes(" ")){
         let spaceSpot = name.indexOf(" ");
         name - name.substring(0,spaceSpot) + sp + name.substring(spaceSpot+1);
@@ -63,3 +70,4 @@ function getInfo(){//function is called when summoner name is entered and thus
     console.log("{ rankLosses: "+ rankLosses + " },");
 
 }
+});
