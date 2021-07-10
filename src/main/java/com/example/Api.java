@@ -13,6 +13,9 @@ public class Api {
     static BufferedReader reader;
     static String line;
     static StringBuffer responseContent = new StringBuffer();
+    public static String fetchDataFromApiGivenUsername(String username){
+        return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key);
+    }
     public static String fetchDataFromApiAsString(String link) {
         try {
             URL url = new URL(link);
@@ -45,7 +48,7 @@ public class Api {
         }
         return responseContent.toString();
     }
-    public static String getSummonderIdByUserName(String id){
+    public static String getSummonderPuuidByUserName(String id){
         String link = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + id+"?api_key="+ key;
         try {
             URL url = new URL(link);
@@ -87,8 +90,10 @@ public class Api {
 
     }
     public static String getMatchesBySummonerId(String id){
-        String puuid = getSummonderIdByUserName(id);
+        String puuid = getSummonderPuuidByUserName(id);
         String link = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ puuid +"/ids?start=0&count=20&" + "api_key="+ key;
         return fetchDataFromApiAsString(link);
     }
 }
+
+
