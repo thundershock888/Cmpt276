@@ -8,8 +8,9 @@
     <!--<link rel="stylesheet" th:href="main.css">-->
     <link rel="stylesheet" href="/stylesheets/main.css">
     
-   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	-->
-   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
     <script src="@{./api.js}" defer></script>
 </head>
@@ -39,6 +40,15 @@
                   </button>
                 </div>
              </li>
+             <!-- 
+             <li >
+                <div class="search" >
+                    <input type="text" placeholder="Search summoner" id ="summonerSearch" >
+                    <button class="searchButton" onclick="myFunction()">
+                     <i class="material-icons">search</i>
+                  </button>
+                </div>
+             </li>-->
           <li><a href="#" class="nav-link">Home</a></li>
           <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
           <li class="logged-out" style = "display:none">
@@ -73,6 +83,7 @@
                 <input type="text" id="signup-lolid" required />
                 <label for="signup-bio">League Account ID</label>
               </div>
+              <p class="error red-text center-align"></p>
             <button class="btn #00796b teal darken-2 z-depth-0">Create Account</button>
           </form>
         </div>
@@ -82,8 +93,7 @@
     <div id="modal-account" class="modal">
         <div class="modal-content center-align">
         <h4>Account details</h4><br/>
-        <div class="account-details"></div>
-        <div class="account-extras"></div>
+        <div class="account-det"></div>
         </div>
     </div>
         <!--about us-->
@@ -106,6 +116,7 @@
             <input type="password" id="login-password" required />
             <label for="login-password">Password</label>
             </div>
+            <p class="error red-text center-align"></p>
             <button class="btn #00796b teal darken-2z-depth-0">Login</button>
         </form>
         </div>
@@ -122,6 +133,27 @@
         <ul class="collapsible z-depth-0 infos" style="border: none;">
         </ul>
     </div>
+
+    <!-- only for admin -->
+    <div class="container" style="margin-top: 40px;">
+        <ul class="collapsible z-depth-0 admin-info" style="border: none;">
+        </ul>
+    </div>
+    
+    <!-- mock db for summoner search-->
+    <!--
+    <div class="container">
+        <ul id="mysumm" class="logged-in" style = "display:none">
+            <li><a href="#">Aatar</a></li>
+            <li><a href="#">Aron</a></li>
+            <li><a href="#">Cargo</a></li>
+            <li><a href="#">Cortes</a></li>
+            <li><a href="#">Demo</a></li>
+            <li><a href="#">Jarvis</a></li>
+            <li><a href="#">Kor</a></li>
+            <li><a href="#">Kar</a></li>
+        </ul>
+    </div>-->
 
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
@@ -146,6 +178,25 @@
 
         //firestore settings
         db.settings({merge: true});
+        
+        //function for mock summoner retrival
+        /*
+        function myFunction() {
+            var input, filter, ul, li, a, i, Val;
+            input = document.getElementById("summonerSearch");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("mysumm");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                Val = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+    }*/
 </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
