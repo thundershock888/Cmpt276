@@ -17,8 +17,7 @@ public class Api {
     public static String fetchDataFromApiGivenUsername(String username){
         return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key);
     }
-    public static String fetchDataFromApiAsString(String link) {//given a api link string, aka like https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key, returns a string
-        //that is in a valid json format containing that data from that api pull request.
+    public static String fetchDataFromApiAsString(String link) {
         try {
             URL url = new URL(link);
             //System.out.println(link);
