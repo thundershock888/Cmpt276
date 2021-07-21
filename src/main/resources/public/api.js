@@ -1,6 +1,5 @@
-/*require(['api'], function(){
-
-
+/*import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const fetch = require("node-fetch");
 const bluebird = require("bluebird");
 fetch.promise = bluebird;
@@ -69,10 +68,13 @@ function getInfo(){//function is called when summoner name is entered and thus
     console.log("{ rankWins: "+ rankWins + " },");
     console.log("{ rankLosses: "+ rankLosses + " },");
 
-}
-});
-*/
+}*/
+
 
 function getInfo(){
-    console.log("working");
-}
+    //let url = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/ImTeggy?api_key=RGAPI-8f8f2cad-0a08-472e-8a89-d5b7d2a1e63f';
+    fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/ImTeggy?api_key=RGAPI-8f8f2cad-0a08-472e-8a89-d5b7d2a1e63f',{mode: 'no-cors'})
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(error => console.log("error"))
+  }

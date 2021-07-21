@@ -18,6 +18,8 @@ package com.example;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -44,12 +46,14 @@ public class Main {
   @Autowired
   private DataSource dataSource;
 
-  public static void main(String[] args) throws Exception {
-    SpringApplication.run(Main.class, args);
-    
-    //outputs json data from username "delcious"
-    String result = Api.fetchDataFromApiGivenUsername("delicious");
-    System.out.println("The output is: " + result);
+  public static void main(String[] args){
+    JSONObject result = null;
+    try {
+      result = new JSONObject(Api.fetchDataFromApiGivenUsername("delicious"));
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    System.out.println("The output is: "+result);
   }
   
 

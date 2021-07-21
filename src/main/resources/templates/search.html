@@ -11,6 +11,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
+
+    
+    
     <!--need to separate to a new css for search-->
     <style>
       table,th, td {
@@ -23,6 +26,7 @@
 
 <body>
   <script src="api.js"></script>
+  
   
   <div class="basic-header-1">
     <div class="logo">
@@ -43,7 +47,7 @@
             <div class="search right" >
                 <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
             
-                <button class="searchButton" onclick="getInfo()">
+                <button class="searchButton" id="searchButton" onclick="getInfo()" >
                   <i class="material-icons">search</i>
                  </button>
             </div>
@@ -125,5 +129,6 @@
                 
             }
             </script>-->
+            
 </body>
 </html>
