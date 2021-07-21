@@ -1,4 +1,4 @@
-require(['api'], function(){
+/*require(['api'], function(){
 
 
 const fetch = require("node-fetch");
@@ -36,7 +36,7 @@ async function requestRankedLeagueData(summonerID, key){//gets data of player ra
 
 
 function getInfo(){//function is called when summoner name is entered and thus 
-    const key = "RGAPI-3934ee96-4600-4722-9053-b5626cb4a6fd";//api key
+    const key = "RGAPI-8f8f2cad-0a08-472e-8a89-d5b7d2a1e63f";//api key
     const sp = "%20";
     const name= document.getElementById('summonerSearch').value;
 
@@ -71,3 +71,8 @@ function getInfo(){//function is called when summoner name is entered and thus
 
 }
 });
+*/
+
+function getInfo(){
+    console.log("working");
+}
