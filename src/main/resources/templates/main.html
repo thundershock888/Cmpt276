@@ -38,22 +38,14 @@
             <li>
                 <div class="search right" >
                     <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
-                
-                    <button class="searchButton" onclick="getInfo()">
-                        <i class="fa fa-search"></i>
+                <!-- search button takes you to search page-->
+                    <button class="searchButton" onclick="fetchDataFromApiGivenUsername()"> <a href="search">
+                        <i class="material-icons">search</i></a>
                      </button>
                 </div>
              </li>
-             <!-- 
-             <li >
-                <div class="search" >
-                    <input type="text" placeholder="Search summoner" id ="summonerSearch" >
-                    <button class="searchButton" onclick="myFunction()">
-                     <i class="material-icons">search</i>
-                  </button>
-                </div>
-             </li>-->
-          <li><a href="#" class="nav-link">Home</a></li>
+        
+          <li><a href="./" class="nav-link">Home</a></li>
           <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
           <li class="logged-out" style = "display:none">
               <a href="#" class="modal-trigger" data-target="modal-login">Login</a></li>

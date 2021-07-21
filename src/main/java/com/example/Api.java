@@ -7,9 +7,8 @@ import java.net.MalformedURLException;
 import java.io.IOException;
 import java.net.URL;
 
-
 public class Api {
-    final static String key = "RGAPI-3934ee96-4600-4722-9053-b5626cb4a6fd";
+    final static String key = "RGAPI-8f8f2cad-0a08-472e-8a89-d5b7d2a1e63f";
     private static HttpURLConnection connection;
     static BufferedReader reader;
     static String line;
@@ -17,7 +16,8 @@ public class Api {
     public static String fetchDataFromApiGivenUsername(String username){
         return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key);
     }
-    public static String fetchDataFromApiAsString(String link) {
+    public static String fetchDataFromApiAsString(String link) {//given a api link string, aka like https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key, returns a string
+        //that is in a valid json format containing that data from that api pull request.
         try {
             URL url = new URL(link);
             //System.out.println(link);
@@ -49,7 +49,7 @@ public class Api {
         }
         return responseContent.toString();
     }
-    public static String getSummonderPuuidByUserName(String id){
+    public static String getSummonderPuuidByUserName(String id){//returns the puuid of a league account, given the username
         String link = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + id+"?api_key="+ key;
         try {
             URL url = new URL(link);
@@ -90,16 +90,17 @@ public class Api {
         return puuid;
 
     }
-    public static String getMatchesBySummonerId(String id){
+    public static String getMatchesBySummonerId(String id){//takes in a users puuid, and returns the match history( list of matches)
         String puuid = getSummonderPuuidByUserName(id);
-        String link = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ puuid +"/ids?start=0&count=20&" + "api_key="+ key;
+        String link = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ puuid +"/ids?start=0&count=200&" + "api_key="+ key;
         return fetchDataFromApiAsString(link);
     }
+    public static String getMatchDataByMatchId(String matchID){//takes the numerical match id, (only works in NA regoin for now), and
+        //returns a valid json string that contains the match data. very large. wayne is currently working on a way to parse this into more usable and useful data.
+        String link = "https://na1.api.riotgames.com/lol/match/v4/timelines/by-match/" + matchID+ "?api_key=" + key;
+        return fetchDataFromApiAsString(link);
+    }
+    
 }
-
-
-
-
-
 
 

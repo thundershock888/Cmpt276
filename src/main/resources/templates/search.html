@@ -1,16 +1,110 @@
-<!--testing search html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Results</title>
     <link rel="stylesheet" href="/stylesheets/main.css">
-    <title>Search</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
+    <!--need to separate to a new css for search-->
+    <style>
+      table,th, td {
+        background-color: beige;
+        border: 1px;
+      }
+    </style>
 </head>
+
 <body>
-    <h1 class = "headertitle"> Search </h1>
-    <!---not finished, not linked to anything-->
+  
+  <div class="basic-header-1">
+    <div class="logo">
+        <img th:src="@{/images/lol-icon.png}" height="35" alt="League Of Legends Logo">
+    </div>
+</div>
+ 
+<div class="basic-header-2">
+    <div class="logo-2">
+        <p class="logo-2-text">LOL Stat Track</p>
+    </div>
+</div>
+
+<nav class="nav" >
+<div class="nav-wrapper" >
+    <ul id="nav-mobile" class="hide-on-med-and-down">
+        <li>
+            <div class="search right" >
+                <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
+            
+                <button class="searchButton" onclick="getInfo()">
+                  <i class="material-icons">search</i>
+                 </button>
+            </div>
+         </li>
+      <li><a href="./" class="nav-link">Home</a></li>
+      <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
+      <li class="logged-out" style = "display:none">
+          <a href="#" class="modal-trigger" data-target="modal-login">Login</a></li>
+      <li class="logged-out" style = "display:none">
+          <a href="#" class="modal-trigger" data-target="modal-signup">Create Account</a></li>
+      <li class="logged-in" style = "display:none">
+          <a href="#" class="modal-trigger" data-target="modal-account">Account</a></li>
+      <li class="logged-in" style = "display:none">
+          <a href="#" class="modal-trigger" id="logout">Logout</a></li>
+      
+      
+
+    </ul>
+  </div>
+</nav>
+
+<div class = "content">
+  <img id = "backgroundimage" th:src="@{/images/background.jpg}">
+
+  
+    <h2 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h2>
+    <br>
+      <table>
+        <tr>
+          <th>Summoner name:</th>
+          <th>___</th>
+        </tr>
+        <tr>
+          <td> Summoner information: </td>
+          <td>id </td>
+          <td>accountid</td>
+          <td>puuid</td>
+          <td>profileIconId</td>
+          <td>revisionDate</td>
+          <td>summonerLevel</td>
+        </tr>
+        <tr>
+          <td>Last __ games </td>
+        </tr>
+        <tr>
+          <td>Game # 1</td>
+          <td>
+            <ul>
+              <li> platformId </li>
+              <li>gameId</li>
+              <li>champion</li>
+              <li>queue</li>
+              <li>season</li>
+              <li>timestamp</li>
+              <li>role</li>
+              <li>lane</li>
+            </ul>
+          </td>
+
+        </tr>
+      </table>
+
+    <!---not finished, not linked to anything
         <input type="text" placeholder="Enter Summoner" name="searchSumm">
         <input type="submit" value="Submit">
         <button onclick="httpGet()">Info about DELICIOUSMILKGG</button>
@@ -24,10 +118,10 @@
                   document.getElementById("demo").innerHTML = this.responseText;
                 }
               };
-                xmlHttp.open("GET", "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/DELICIOUSMILKGG?api_key=RGAPI-ae821434-576f-4b93-8643-9cb02a5cb145", true);
+                xmlHttp.open("GET", "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/DELICIOUSMILKGG?api_key=RGAPI-9da3446b-f281-406c-9e78-173a5b25ab64", true);
                 xmlHttp.send();
                 
             }
-            </script>
+            </script>-->
 </body>
 </html>

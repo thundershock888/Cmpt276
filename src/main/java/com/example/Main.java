@@ -46,7 +46,12 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
+    
+    //outputs json data from username "delcious"
+    String result = Api.fetchDataFromApiGivenUsername("delicious");
+    System.out.println("The output is: " + result);
   }
+  
 
   @RequestMapping("/")
   String index() {
