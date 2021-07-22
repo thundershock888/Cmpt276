@@ -157,10 +157,7 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
-    /*ArrayList<String> outputName = new ArrayList<String>();
-      String named = summoner.getName();
-      outputName.add(named);
-      System.out.println( named);*/
+
     model.put("names", summoner.getName());
     model.put("levels", summoner.getSummonerLevel());
     model.put("tiers", ranked.getTier());
