@@ -11,7 +11,7 @@ import java.nio.Buffer;
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
-    final static String key = "RGAPI-8f8f2cad-0a08-472e-8a89-d5b7d2a1e63f";
+    final static String key = "RGAPI-fd09577e-2226-4d7b-b548-5d3af3c89c49";
     private static HttpURLConnection connection;
     static BufferedReader reader;
     static String line;
