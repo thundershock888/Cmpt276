@@ -181,7 +181,7 @@ public class Main {
     Ranked ranked = new Ranked();
     getRanked(ranked, summoner.getId()); 
 
-
+    System.out.println("Encrypted account id: "+summoner.getAccountId());
     System.out.println("Name: "+ summoner.getName());
     System.out.println("Level: "+ summoner.getSummonerLevel());
     System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
@@ -191,6 +191,10 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
+
+
+    
+
   }
 
 
