@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.Buffer;
+
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
@@ -20,6 +21,7 @@ public class Api {
     }
     public static String fetchDataFromApiAsString(String link) {//given a api link string, aka like https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key, returns a string
         //that is in a valid json format containing that data from that api pull request.
+        responseContent = new StringBuffer();
         try {
             URL url = new URL(link);
             //System.out.println(link);
@@ -34,7 +36,6 @@ public class Api {
                 while ((line = reader.readLine()) != null) {
                     responseContent.append(line);
                 }
-                reader.close();
 
             } else {
                 reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -101,6 +102,11 @@ public class Api {
         //returns a valid json string that contains the match data. very large. wayne is currently working on a way to parse this into more usable and useful data.
         String link = "https://na1.api.riotgames.com/lol/match/v4/timelines/by-match/" + matchID+ "?api_key=" + key;
         return fetchDataFromApiAsString(link);
+    }
+
+
+    public static String getRankedLeagueData(String id){//retrieves ranked data.
+        return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ id+"?api_key="+key);
     }
     
 }

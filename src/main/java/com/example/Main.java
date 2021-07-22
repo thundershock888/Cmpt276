@@ -50,20 +50,67 @@ public class Main {
   @Autowired
   private DataSource dataSource;
 
-  public static void main(String[] args){
-    String result = Api.fetchDataFromApiGivenUsername("delicious");
-    System.out.println("results are: "+ result);
 
-    ObjectMapper mapper  = new ObjectMapper();
+  public static void getSummoner(Summoner summoner, String name){
     try{
-        JsonNode node = mapper.readTree(result);
-        String id = node.get("id").asText();
-        System.out.println("printing id only:" +id);
+      JsonNode node = (new ObjectMapper()).readTree(Api.fetchDataFromApiGivenUsername(name));
+      System.out.println("getSummoner: "+ node);
+      
+      summoner.setAccountId(node.get("accountId").asText());
+      summoner.setProfileIconId(node.get("profileIconId").asInt());
+      summoner.setRevisionDate(node.get("revisionDate").asLong());
+      summoner.setName(node.get("name").asText());
+      summoner.setId(node.get("id").asText());
+      summoner.setPuuid(node.get("puuid").asText());
+      summoner.setSummonerLevel(node.get("summonerLevel").asLong());
+    }catch(JsonProcessingException e){
+      e.printStackTrace();
+    }
+  }
+
+  public static void getRanked(Ranked ranked, String id){
+    try{
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode node = objectMapper.readTree(Api.getRankedLeagueData(id));
+      System.out.println("getRanked: "+ node);
+     
+      ranked.setLeagueId(node.get(0).get("leagueId").asText());
+      ranked.setSummonerId(node.get(0).get("summonerId").asText());
+      ranked.setSummonerName(node.get(0).get("summonerName").asText());
+      ranked.setQueuetype(node.get(0).get("queueType").asText());
+      ranked.setTier(node.get(0).get("tier").asText());
+      ranked.setRank(node.get(0).get("rank").asText());
+      ranked.setLeaguePoints(node.get(0).get("leaguePoints").asInt());
+      ranked.setWins(node.get(0).get("wins").asInt());
+      ranked.setLosses(node.get(0).get("losses").asInt());
+      ranked.setHotStreak(node.get(0).get("hotStreak").asBoolean());
+      ranked.setVeteran(node.get(0).get("veteran").asBoolean());
+      ranked.setFreshBlood(node.get(0).get("freshBlood").asBoolean());
+      ranked.setInactive(node.get(0).get("inactive").asBoolean());
+
 
     }catch(JsonProcessingException e){
       e.printStackTrace();
     }
-    
+  }
+
+  public static void main(String[] args){
+    Summoner summoner = new Summoner();
+    getSummoner(summoner, "delicious");
+
+    Ranked ranked = new Ranked();
+    getRanked(ranked, summoner.getId()); 
+
+
+    System.out.println("Name: "+ summoner.getName());
+    System.out.println("Level: "+ summoner.getSummonerLevel());
+    System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
+    System.out.println("Wins: "+ ranked.getWins());
+    System.out.println("Losses: "+ ranked.getLosses());
+    System.out.println("Winstreak? "+ranked.isHotStreak());
+    System.out.println("New player? "+ ranked.isFreshBlood());
+    System.out.println("Veteran player? "+ ranked.isVeteran());
+    System.out.println("Inactive player? "+ ranked.isInactive());
     
   }
   
