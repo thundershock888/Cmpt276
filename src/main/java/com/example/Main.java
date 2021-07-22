@@ -25,10 +25,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -54,13 +51,6 @@ public class Main {
   @Autowired
   private DataSource dataSource;
 
-  @GetMapping(
-    path = "/"
-  )
-  String intro(){
-    return "main";
-  }
-
 
   public static void getSummoner(Summoner summoner, String name){
     try{
@@ -74,7 +64,6 @@ public class Main {
       summoner.setId(node.get("id").asText());
       summoner.setPuuid(node.get("puuid").asText());
       summoner.setSummonerLevel(node.get("summonerLevel").asLong());
-      
     }catch(JsonProcessingException e){
       e.printStackTrace();
     }
@@ -140,43 +129,7 @@ public class Main {
     return "search";
   }
 
-  @GetMapping("/summ")
-  public String searching (Map<String, Object> model, @RequestParam String name) {
-    System.out.println(name);
-    Summoner summoner = new Summoner();
-    getSummoner(summoner, name);
-
-    Ranked ranked = new Ranked();
-    getRanked(ranked, summoner.getId()); 
-    System.out.println("Name: "+ summoner.getName());
-    System.out.println("Level: "+ summoner.getSummonerLevel());
-    System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
-    System.out.println("Wins: "+ ranked.getWins());
-    System.out.println("Losses: "+ ranked.getLosses());
-    System.out.println("Winstreak? "+ranked.isHotStreak());
-    System.out.println("New player? "+ ranked.isFreshBlood());
-    System.out.println("Veteran player? "+ ranked.isVeteran());
-    System.out.println("Inactive player? "+ ranked.isInactive());
-    /*ArrayList<String> outputName = new ArrayList<String>();
-      String named = summoner.getName();
-      outputName.add(named);
-      System.out.println( named);*/
-    model.put("names", summoner.getName());
-    model.put("levels", summoner.getSummonerLevel());
-    model.put("tiers", ranked.getTier());
-    model.put("ranks",ranked.getRank());
-    model.put("lps", ranked.getLeaguePoints());
-    model.put("wins", ranked.getWins());
-    model.put("losses", ranked.getLosses());
-    model.put("winstreak",ranked.isHotStreak());
-    model.put("news", ranked.isFreshBlood());
-    model.put("veterans", ranked.isVeteran());
-    model.put("inactives", ranked.isInactive());
-    return "search";
-  }
-  public static void main(String[] args) throws Exception {
-    SpringApplication.run(Main.class, args);
-
+  public static void main(String[] args) {
     String pid = "Delicious";
     Summoner summoner = new Summoner();
     getSummoner(summoner, pid);

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/stylesheets/main.css">
     
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	-->
-    
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
@@ -35,20 +34,14 @@
 
     <nav class="nav" >
     <div class="nav-wrapper" >
-        <ul id="nav-mobile" >
+        <ul id="nav-mobile" class="hide-on-med-and-down">
             <li>
                 <div class="search right" >
-                    <form action="/summ" method="get">
-                        <div class="row">
-                            <div class="input-field col s10">
-                                <input type="text" id="name" name="name" placeholder="Search summoner"></div>
-                        <div class="input-field ">
-                            <div class="col s1">
-                                <button class="searchButton" id="searchButton">
-                                <i class="material-icons">search</i>
-                            </div>
-                        </button></div>
-                      </form>
+                    <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
+                <!-- search button takes you to search page-->
+                    <button class="searchButton" onclick="fetchDataFromApiGivenUsername()"> <a href="search">
+                        <i class="material-icons">search</i></a>
+                     </button>
                 </div>
              </li>
         

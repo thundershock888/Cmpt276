@@ -7,6 +7,7 @@
 
     <title>Search Results</title>
     <link rel="stylesheet" href="/stylesheets/main.css">
+    
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
@@ -41,27 +42,17 @@
 
 <nav class="nav" >
 <div class="nav-wrapper" >
-    <ul id="nav-mobile">
+    <ul id="nav-mobile" class="hide-on-med-and-down">
         <li>
-          <div >
-            <div>
-              <form action="/summ" method="get">
-                <div class="row">
-                    <div class="input-field col s10">
-                        <input type="text" id="name" name="name" placeholder="Search summoner"></div>
-                <div class="input-field ">
-                    <div class="col s1">
-                        <button class="searchButton" id="searchButton">
-                        <i class="material-icons">search</i>
-                    </div>
-                </button></div>
-              </form>
+            <div class="search right" >
+                <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
+            
+                <button class="searchButton" id="searchButton">
+                  <i class="material-icons"><a th:href="@{/summoner/{pid}(pid=${summonerSearch})}">search</a></i>
+                 </button>
             </div>
-          </div>
-          
-        
          </li>
-      <li><a href="/" class="nav-link">Home</a></li>
+      <li><a href="./" class="nav-link">Home</a></li>
       <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
       <li class="logged-out" style = "display:none">
           <a href="#" class="modal-trigger" data-target="modal-login">Login</a></li>
@@ -84,50 +75,20 @@
   
     <h2 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h2>
     <br>
-    
       <table>
         <tr>
           <th>Summoner name:</th>
-          <th th:text="${names}"> </th>
+          <th>___</th>
         </tr>
         <tr>
-          <th rowspan="8"> Summoner information: </th>
+          <td> Summoner information: </td>
+          <td>id </td>
+          <td>accountid</td>
+          <td>puuid</td>
+          <td>profileIconId</td>
+          <td>revisionDate</td>
+          <td>summonerLevel</td>
         </tr>
-          <tr>
-            <td>Level</td>  
-            <td th:text="${levels}"></td>
-          </tr>
-          <tr>
-            <th>Player rank</th>
-            <td th:text="${tiers}"></td>
-            <td th:text="${ranks}"></td>
-            <td>LP: </td>
-            <td th:text="${lps}"></td>
-          </tr>
-          <tr>
-            <td>Wins</td>
-            <td th:text="${wins}"></td>
-          </tr>
-          <tr>
-            <td>Losses</td>
-            <td th:text="${losses}"></td>
-          </tr>
-          <tr>
-            <td>Winstreak?</td>
-            <td th:text="${winstreak}"></td>
-          </tr>
-          <tr>
-            <td>New player?</td>
-            <td th:text="${news}"></td>
-          </tr>
-          <tr>
-            <td>Veteran player?</td>
-            <td th:text="${veterans}"></td>
-          </tr>
-          <tr>
-            <td>Inactive player?</td>
-            <td th:text="${inactives}"></td>
-          </tr>
         <tr>
           <td>Last __ games </td>
         </tr>
