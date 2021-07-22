@@ -47,8 +47,8 @@
             <div class="search right" >
                 <input type="text" class="searchTerm" placeholder="Search summoner" id = "summonerSearch">
             
-                <button class="searchButton" id="searchButton" onclick="getInfo()" >
-                  <i class="material-icons">search</i>
+                <button class="searchButton" id="searchButton">
+                  <i class="material-icons"><a th:href="@{/summoner/{pid}(pid=${summonerSearch})}">search</a></i>
                  </button>
             </div>
          </li>

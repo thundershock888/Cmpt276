@@ -27,6 +27,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -94,26 +95,6 @@ public class Main {
     }
   }
 
-  public static void main(String[] args){
-    Summoner summoner = new Summoner();
-    getSummoner(summoner, "delicious");
-
-    Ranked ranked = new Ranked();
-    getRanked(ranked, summoner.getId()); 
-
-
-    System.out.println("Name: "+ summoner.getName());
-    System.out.println("Level: "+ summoner.getSummonerLevel());
-    System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
-    System.out.println("Wins: "+ ranked.getWins());
-    System.out.println("Losses: "+ ranked.getLosses());
-    System.out.println("Winstreak? "+ranked.isHotStreak());
-    System.out.println("New player? "+ ranked.isFreshBlood());
-    System.out.println("Veteran player? "+ ranked.isVeteran());
-    System.out.println("Inactive player? "+ ranked.isInactive());
-    
-  }
-  
 
   @RequestMapping("/")
   String index() {
@@ -147,6 +128,27 @@ public class Main {
   String search() {
     return "search";
   }
+
+  public static void main(String[] args) {
+    String pid = "Delicious";
+    Summoner summoner = new Summoner();
+    getSummoner(summoner, pid);
+
+    Ranked ranked = new Ranked();
+    getRanked(ranked, summoner.getId()); 
+
+
+    System.out.println("Name: "+ summoner.getName());
+    System.out.println("Level: "+ summoner.getSummonerLevel());
+    System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
+    System.out.println("Wins: "+ ranked.getWins());
+    System.out.println("Losses: "+ ranked.getLosses());
+    System.out.println("Winstreak? "+ranked.isHotStreak());
+    System.out.println("New player? "+ ranked.isFreshBlood());
+    System.out.println("Veteran player? "+ ranked.isVeteran());
+    System.out.println("Inactive player? "+ ranked.isInactive());
+  }
+
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
