@@ -7,11 +7,27 @@ import java.net.MalformedURLException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.Buffer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
-    final static String key = "RGAPI-fd09577e-2226-4d7b-b548-5d3af3c89c49";
+    static String key;
+
+
+     static {
+         try {
+             List<String> lines = Files.lines(Paths.get("apikeys.txt")).collect(Collectors.toList());
+             key = lines.get(0);
+         } catch (IOException e) {
+             System.out.println("Api keys doesn't exist, please add the file.");
+             e.printStackTrace();
+         }
+     }
+
     private static HttpURLConnection connection;
     static BufferedReader reader;
     static String line;
@@ -87,7 +103,7 @@ public class Api {
         for (int i = 0; i < userData.length; i++) {
             System.out.println(userData[i]);
         }
-        String puuid =userData[2].split(":")[1];
+        String puuid =userData[1].split(":")[1];
         puuid = puuid.substring(1, puuid.length()-1);
         System.out.println("printing puuid parsed: " + puuid);
         return puuid;
@@ -95,7 +111,7 @@ public class Api {
     }
     public static String getMatchesBySummonerId(String id){//takes in a users puuid, and returns the match history( list of matches)
         String puuid = getSummonderPuuidByUserName(id);
-        String link = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ puuid +"/ids?start=0&count=200&" + "api_key="+ key;
+        String link = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/"+ puuid + "?api_key="+ key;
         return fetchDataFromApiAsString(link);
     }
     public static String getMatchDataByMatchId(String matchID){//takes the numerical match id, (only works in NA regoin for now), and
@@ -108,7 +124,8 @@ public class Api {
     public static String getRankedLeagueData(String id){//retrieves ranked data.
         return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ id+"?api_key="+key);
     }
-    
+
 }
+
 
 
