@@ -18,8 +18,8 @@ package com.example;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -36,6 +36,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 @SpringBootApplication
 public class Main {
@@ -47,13 +51,20 @@ public class Main {
   private DataSource dataSource;
 
   public static void main(String[] args){
-    JSONObject result = null;
-    try {
-      result = new JSONObject(Api.fetchDataFromApiGivenUsername("delicious"));
-    } catch (JSONException e) {
+    String result = Api.fetchDataFromApiGivenUsername("delicious");
+    System.out.println("results are: "+ result);
+
+    ObjectMapper mapper  = new ObjectMapper();
+    try{
+        JsonNode node = mapper.readTree(result);
+        String id = node.get("id").asText();
+        System.out.println("printing id only:" +id);
+
+    }catch(JsonProcessingException e){
       e.printStackTrace();
     }
-    System.out.println("The output is: "+result);
+    
+    
   }
   
 
