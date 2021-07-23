@@ -175,6 +175,10 @@ public class Main {
 
     Ranked ranked = new Ranked();
     getRanked(ranked, summoner.getId()); 
+
+    MatchList matchList = new MatchList();
+    getSummonerMatch(matchList, summoner.getAccountId());
+
     System.out.println("Name: "+ summoner.getName());
     System.out.println("Level: "+ summoner.getSummonerLevel());
     System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
@@ -196,6 +200,15 @@ public class Main {
     model.put("news", ranked.isFreshBlood());
     model.put("veterans", ranked.isVeteran());
     model.put("inactives", ranked.isInactive());
+
+    model.put("platformId", matchList.getMatch(0).getPlatformId());
+    model.put("gameId", matchList.getMatch(0).getGameId());
+    model.put("champion",matchList.getMatch(0).getChampion());
+    model.put("queue",matchList.getMatch(0).getQueue());
+    model.put("season",matchList.getMatch(0).getSeason());
+    model.put("timestamp",matchList.getMatch(0).getTimestamp());
+    model.put("role",matchList.getMatch(0).getRole());
+    model.put("lane",matchList.getMatch(0).getLane());
     return "main";
   }
   public static void main(String[] args) throws Exception {
@@ -207,7 +220,6 @@ public class Main {
 
     Ranked ranked = new Ranked();
     getRanked(ranked, summoner.getId()); 
-
 
     MatchList matchList = new MatchList();
     getSummonerMatch(matchList, summoner.getAccountId());
@@ -222,7 +234,10 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
+    System.out.println("match 0: "+ matchList.getMatch(0).getRole());
     System.out.println("match 0: "+ matchList.getMatch(0).getLane());
+    
+
   }
 
 

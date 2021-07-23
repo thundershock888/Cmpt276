@@ -195,13 +195,13 @@
             <td th:text="${inactives}"></td>
           </tr>
         <tr>
-          <td>Last __ games </td>
+          <th>Last games </th>
         </tr>
         <tr>
           <td>Game # 1</td>
           <td>
             <ul>
-              <li> platformId </li>
+              <li>platformId </li>
               <li>gameId</li>
               <li>champion</li>
               <li>queue</li>
@@ -210,6 +210,18 @@
               <li>role</li>
               <li>lane</li>
             </ul>
+            <td>
+              <ul>
+                <li th:text="${platformId}"></li> 
+                <li th:text="${gameId}"></li>
+                <li th:text="${champion}"></li>
+                <li th:text="${queue}"></li>
+                <li th:text="${season}"></li>
+                <li th:text="${timestamp}"></li>
+                <li th:text="${role}"></li>
+                <li th:text="${lane}"></li>
+              </ul>
+            </td>
           </td>
 
         </tr>
