@@ -62,7 +62,7 @@ public class Main {
   }
 
 
-  public static void getSummoner(Summoner summoner, String name){
+  public static void getSummoner(Summoner summoner, String name){// using api.java we are able to parse the website for basic information on each summoner
     if(name.contains(" ")){
       String replace = name.replace(" ", "%20");
       name = replace;
@@ -84,7 +84,7 @@ public class Main {
     }
   }
 
-  public static void getRanked(Ranked ranked, String id){
+  public static void getRanked(Ranked ranked, String id){//using summoner data we are able to parse information about their ranked data
     try{
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode node = objectMapper.readTree(Api.getRankedLeagueData(id));
@@ -110,7 +110,7 @@ public class Main {
     }
   }
   //Summoner Match retrival, doesnt work yet
-  public static void getSummonerMatch(MatchList matchList, String id){
+  public static void getSummonerMatch(MatchList matchList, String id){//using getSummoner data we are able to view their last 100 games.
     try{
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode node = objectMapper.readTree(Api.getMatchesBySummonerId(id));
