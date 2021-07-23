@@ -83,14 +83,6 @@ loginForm.addEventListener('submit', (e) => {
 
 });
 
-function showSearchTable(){
-  var x = document.getElementById("searching");
-  if (x.style.display === "none") {
-    x.style.display = 'block';
-    }else {
-      x.style.display ='none';
-    }
-  }
 
 /*
   function signUp(){
