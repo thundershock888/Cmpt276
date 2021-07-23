@@ -48,6 +48,10 @@ public class MatchList {
         this.matches.add(temp);
 
     }
+
+    public Matches getMatch(int i){
+        return this.matches.get(i);
+    }
 }
 
     

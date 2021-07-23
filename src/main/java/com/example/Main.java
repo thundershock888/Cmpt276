@@ -222,6 +222,7 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
+    System.out.println("match 0: "+ matchList.getMatch(0).getLane());
   }
 
 
