@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Cmpt276" target="1.8" />
+      <module name="Cmpt276" target="9" />
       <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
