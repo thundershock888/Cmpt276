@@ -12,7 +12,7 @@ public class UserMatchData {
     int totalTime;
     int numFrames;
     MatchResponse response;
-    UserMatchData(int id, String matchId){// constructor for matchdata object, takes in a interger(1-10) as participant ID, and a match id
+    UserMatchData(String matchId){// constructor for matchdata object, takes in a interger(1-10) as participant ID, and a match id
         String matchString = Api.getMatchDataByMatchId(matchId);
         response = gson.fromJson(matchString, MatchResponse.class);
         numFrames = response.getFrames().size();
