@@ -12,15 +12,6 @@
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
 
     
-    
-    <!--need to separate to a new css for search-->
-    <style>
-      table,th, td {
-        background-color: beige;
-        border: 1px;
-      }
-    </style>
-    
 </head>
 
 <body>
@@ -43,8 +34,6 @@
 <div class="nav-wrapper" >
     <ul id="nav-mobile">
         <li>
-          <div >
-            <div>
               <form th:action="@{/summ}" method="get">
                 <div class="row">
                     <div class="input-field col s10">
@@ -54,12 +43,9 @@
                         <button class="searchButton" id="searchButton">
                         <i class="material-icons">search</i>
                     </div>
-                </button></div>
+                </button>
+              </div>
               </form>
-            </div>
-          </div>
-          
-        
          </li>
       <li><a href="/" class="nav-link">Home</a></li>
       <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
@@ -82,24 +68,28 @@
   <img id = "backgroundimage" th:src="@{/images/background.jpg}">
 
   
-    <h2 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h2>
+    <h3 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h3>
     <br>
     
-      <table>
+      <div>
+      <table class="container">
+        <thead>
         <tr>
-          <th>Summoner name:</th>
-          <th th:text="${names}"> </th>
+          <th class="head">Summoner name: </th>
+          <td th:text="${names}"></td>
         </tr>
         <tr>
-          <th rowspan="8"> Summoner information: </th>
-        </tr>
+          <th> Summoner information: </th>
+        </tr></thead>
           <tr>
             <th>Level</th>  
             <td th:text="${levels}"></td>
           </tr>
           <tr>
             <th>Player rank</th>
+            <td>Tier: </td>
             <td th:text="${tiers}"></td>
+            <td>Rank: </td>
             <td th:text="${ranks}"></td>
             <td>LP: </td>
             <td th:text="${lps}"></td>
@@ -148,26 +138,7 @@
 
         </tr>
       </table>
-
-    <!---not finished, not linked to anything
-        <input type="text" placeholder="Enter Summoner" name="searchSumm">
-        <input type="submit" value="Submit">
-        <button onclick="httpGet()">Info about DELICIOUSMILKGG</button>
-        <p class = "headertitle" id="demo"> </p>
-
-        <script>
-            function httpGet() {
-                var xmlHttp = new XMLHttpRequest();
-              xmlHttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                  document.getElementById("demo").innerHTML = this.responseText;
-                }
-              };
-                xmlHttp.open("GET", "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/DELICIOUSMILKGG?api_key=RGAPI-9da3446b-f281-406c-9e78-173a5b25ab64", true);
-                xmlHttp.send();
-                
-            }
-            </script>-->
-            
+    </div>
+           
 </body>
 </html>

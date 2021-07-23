@@ -146,3 +146,11 @@
     text-decoration: none;
 
   }
+
+  table {
+    background-color: beige;
+    border: 1px;
+  }
+  th.head{
+    width: 20%;
+  }

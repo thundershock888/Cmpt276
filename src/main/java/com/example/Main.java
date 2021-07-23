@@ -63,6 +63,10 @@ public class Main {
 
 
   public static void getSummoner(Summoner summoner, String name){
+    if(name.contains(" ")){
+      String replace = name.replace(" ", "%20");
+      name = replace;
+        }
     try{
       JsonNode node = (new ObjectMapper()).readTree(Api.fetchDataFromApiGivenUsername(name));
       System.out.println("getSummoner: "+ node);
@@ -169,7 +173,7 @@ public class Main {
     model.put("news", ranked.isFreshBlood());
     model.put("veterans", ranked.isVeteran());
     model.put("inactives", ranked.isInactive());
-    return "search";
+    return "main";
   }
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
