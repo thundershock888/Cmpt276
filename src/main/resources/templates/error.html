@@ -1,9 +1,76 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'error')}">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
 
-  <body>
-    <p th:text="${message}">Exception message</p>
+    
+</head>
+
+<body>
+  <script src="api.js"></script>
+  
+  
+  <div class="basic-header-1">
+    <div class="logo">
+        <img th:src="@{/images/lol-icon.png}" height="35" alt="League Of Legends Logo">
+    </div>
+</div>
+ 
+<div class="basic-header-2">
+    <div class="logo-2">
+        <p class="logo-2-text">LOL Stat Track</p>
+    </div>
+</div>
+
+<nav class="nav" >
+<div class="nav-wrapper" >
+    <ul id="nav-mobile">
+        <li>
+              <form th:action="@{/summ}" method="get">
+                <div class="row">
+                    <div class="input-field col s10">
+                        <input type="text" id="name" name="name" placeholder="Search summoner" required></div>
+                <div class="input-field ">
+                    <div class="col s1">
+                        <button class="searchButton" id="searchButton">
+                        <i class="material-icons">search</i>
+                    </div>
+                </button>
+              </div>
+              </form>
+         </li>
+      <li><a href="/" class="nav-link">Home</a></li>
+      <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
+      <li class="logged-out" style = "display:none">
+          <a href="#" class="modal-trigger" data-target="modal-login">Login</a></li>
+      <li class="logged-out" style = "display:none">
+          <a href="#" class="modal-trigger" data-target="modal-signup">Create Account</a></li>
+      <li class="logged-in" style = "display:none">
+          <a href="#" class="modal-trigger" data-target="modal-account">Account</a></li>
+      <li class="logged-in" style = "display:none">
+          <a href="#" class="modal-trigger" id="logout">Logout</a></li>
+      
+      
+
+    </ul>
+  </div>
+</nav>
+
+<div class = "content">
+  <img id = "backgroundimage" th:src="@{/images/background.jpg}">
+<br>
+  <h6 th:text="${message}" class="container center-align" style="background: whitesmoke" >Exception message</h6>
+  <br>
+  <h5 class="container center-align" style="background: whitesmoke" >Summoner does not exist</h5>
+    
   </body>
 
 </html>

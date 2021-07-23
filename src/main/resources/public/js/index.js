@@ -5,6 +5,7 @@ const adminOnly = document.querySelector('.admin-info');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDet = document.querySelector('.account-det');
+const searchingDet = document.querySelectorAll('.searching');
 
 const setupView = (user)=>{
     if(user){
@@ -84,3 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
 });
+
+function showSearchTable(){
+  var x = document.getElementById("searching");
+  if (x.style.display === "none") {
+    x.style.display = 'block';
+    }else {
+      x.style.display ='none';
+    }
+  }
