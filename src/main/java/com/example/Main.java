@@ -109,6 +109,26 @@ public class Main {
       e.printStackTrace();
     }
   }
+  /*Summoner Match retrival, doesnt work yet
+  public static void getSummonerMatch(Matches matches, String id){
+    try{
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode node = objectMapper.readTree(Api.getMatchesBySummonerId(id));
+      //System.out.println("matches: "+ node);
+//doesnt work
+      matches.setPlatformId(node.get("platformId").asText());
+      matches.setGameId(node.get(0).get("gameId").asText());
+      matches.setChampion(node.get(0).get("champion").asInt());
+      matches.setQueue(node.get(0).get("queue").asInt());
+      matches.setSeason(node.get(0).get("season").asInt());
+      matches.setTimestamp(node.get(0).get("timestamp").asInt());
+      matches.setRole(node.get(0).get("role").asText());
+      matches.setLane(node.get(0).get("lane").asText());
+
+    }catch(JsonProcessingException e){
+      e.printStackTrace();
+    }
+  }*/
 
 
   @RequestMapping("/")
@@ -147,6 +167,9 @@ public class Main {
   @GetMapping("/summ")
   public String searching (Map<String, Object> model, @RequestParam String name) {
     System.out.println(name);
+    if (name == null){
+      return "error";
+    }
     Summoner summoner = new Summoner();
     getSummoner(summoner, name);
 
@@ -184,6 +207,9 @@ public class Main {
 
     Ranked ranked = new Ranked();
     getRanked(ranked, summoner.getId()); 
+/*
+    Matches matches = new Matches();
+    getSummonerMatch(matches, summoner.getAccountId());*/
 
     System.out.println("Encrypted account id: "+summoner.getAccountId());
     System.out.println("Name: "+ summoner.getName());
@@ -195,10 +221,6 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
-
-
-    
-
   }
 
 

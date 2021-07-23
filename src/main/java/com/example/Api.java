@@ -109,9 +109,9 @@ public class Api {
         return puuid;
 
     }
-    public static String getMatchesBySummonerId(String id){//takes in a users puuid, and returns the match history( list of matches)
-        String puuid = getSummonderPuuidByUserName(id);
-        String link = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/"+ puuid + "?api_key="+ key;
+    public static String getMatchesBySummonerId(String id){//takes in a users encrypted accountID, and returns the match history( list of matches)
+        //String puuid = getSummonderPuuidByUserName(id);
+        String link = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/"+ id + "?api_key="+ key;
         return fetchDataFromApiAsString(link);
     }
     public static String getMatchDataByMatchId(String matchID){//takes the numerical match id, (only works in NA regoin for now), and
