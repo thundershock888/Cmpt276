@@ -111,8 +111,7 @@ public class Api {
     }
     public static String getMatchesBySummonerId(String id){//takes in a users encrypted accountID, and returns the match history( list of matches)
         //String puuid = getSummonderPuuidByUserName(id);
-        String link = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/"+ id + "?api_key="+ key;
-        return fetchDataFromApiAsString(link);
+        return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/"+ id + "?api_key="+ key);
     }
     public static String getMatchDataByMatchId(String matchID){//takes the numerical match id, (only works in NA regoin for now), and
         //returns a valid json string that contains the match data. very large. wayne is currently working on a way to parse this into more usable and useful data.

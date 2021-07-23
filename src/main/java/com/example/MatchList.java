@@ -1,5 +1,8 @@
 package com.example;
 import java.util.ArrayList;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MatchList {   
     ArrayList<Matches> matches = new ArrayList<Matches>();
@@ -27,6 +30,25 @@ public class MatchList {
         this.totalGames = totalGames;
     }
 
+    public void addMatch (JsonNode node){
+        //System.out.println("entering addMatch");
+    
+        Matches temp = new Matches();
+        //System.out.println("in try: "+node);
+
+        temp.setGameId(node.get("gameId").asLong());
+        temp.setRole(node.get("role").asText());
+        temp.setSeason(node.get("season").asInt());
+        temp.setPlatformId(node.get("platformId").asText());
+        temp.setChampion(node.get("champion").asInt());
+        temp.setQueue(node.get("queue").asInt());
+        temp.setLane(node.get("lane").asText());
+        temp.setTimestamp(node.get("timestamp").asLong());
+
+        this.matches.add(temp);
+
+    }
+}
 
     
-}
+

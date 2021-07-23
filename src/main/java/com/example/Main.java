@@ -109,26 +109,26 @@ public class Main {
       e.printStackTrace();
     }
   }
-  /*Summoner Match retrival, doesnt work yet
-  public static void getSummonerMatch(Matches matches, String id){
+  //Summoner Match retrival, doesnt work yet
+  public static void getSummonerMatch(MatchList matchList, String id){
     try{
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode node = objectMapper.readTree(Api.getMatchesBySummonerId(id));
       //System.out.println("matches: "+ node);
 //doesnt work
-      matches.setPlatformId(node.get("platformId").asText());
-      matches.setGameId(node.get(0).get("gameId").asText());
-      matches.setChampion(node.get(0).get("champion").asInt());
-      matches.setQueue(node.get(0).get("queue").asInt());
-      matches.setSeason(node.get(0).get("season").asInt());
-      matches.setTimestamp(node.get(0).get("timestamp").asInt());
-      matches.setRole(node.get(0).get("role").asText());
-      matches.setLane(node.get(0).get("lane").asText());
+      matchList.setStartIndex(node.get("startIndex").asInt());
+      matchList.setTotalGames(node.get("totalGames").asInt());
+      matchList.setEndIndex(node.get("endIndex").asInt());
+
+      System.out.println("match list 0: "+ node.get("matches").get(0));
+      for(int i = matchList.getStartIndex(); i< matchList.getEndIndex(); i++){
+        matchList.addMatch(node.get("matches").get(i));
+      }
 
     }catch(JsonProcessingException e){
       e.printStackTrace();
     }
-  }*/
+  }
 
 
   @RequestMapping("/")
@@ -207,9 +207,10 @@ public class Main {
 
     Ranked ranked = new Ranked();
     getRanked(ranked, summoner.getId()); 
-/*
-    Matches matches = new Matches();
-    getSummonerMatch(matches, summoner.getAccountId());*/
+
+
+    MatchList matchList = new MatchList();
+    getSummonerMatch(matchList, summoner.getAccountId());
 
     System.out.println("Encrypted account id: "+summoner.getAccountId());
     System.out.println("Name: "+ summoner.getName());
