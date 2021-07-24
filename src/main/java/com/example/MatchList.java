@@ -31,7 +31,7 @@ public class MatchList {
         this.totalGames = totalGames;
     }
 
-    public void addMatch (JsonNode node, JsonNode champJson){
+    public void addMatch (JsonNode node, JsonNode champJson, JsonNode matchJson){
         //System.out.println("entering addMatch");
     
         Matches temp = new Matches();
@@ -46,9 +46,20 @@ public class MatchList {
         temp.setLane(node.get("lane").asText());
         temp.setTimestamp(node.get("timestamp").asLong());
 
-        String champid = Integer.toString(temp.getChampion());
-        
+        String champid = Integer.toString(temp.getChampion()); 
         temp.setChampionName(champJson.get(champid).asText());
+
+        for(int i = 0; i<83; i++){
+            if(temp.getQueue() == matchJson.get(i).get("queueId").asInt()){
+                temp.setMatchType(matchJson.get(i).get("description").asText());
+                i= 300;
+            }
+        }
+        if(temp.getMatchType()== null){
+            temp.setMatchType("Special");
+        }
+
+        
                
         this.matches.add(temp);
     }

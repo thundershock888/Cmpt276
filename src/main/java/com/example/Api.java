@@ -131,8 +131,11 @@ public class Api {
     public static String getChampionData(String version){//retrieves champion data such as names
         return fetchDataFromApiAsString("https://ddragon.leagueoflegends.com/cdn/"+ version + "/data/en_US/champion.json");
     }
-    public static String getChampionName(){
+    public static String getChampionName(){//custom made json file to get champion names
         return fetchDataFromApiAsString("https://raw.githubusercontent.com/Sunderinq/League-champion-json/main/champions.json");
+    }
+    public static String getMatchTypes(){//queue types in league
+        return fetchDataFromApiAsString("https://static.developer.riotgames.com/docs/lol/queues.json");
     }
 }
 

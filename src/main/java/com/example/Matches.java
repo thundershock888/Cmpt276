@@ -10,6 +10,7 @@ public class Matches {
     private String lane;
     private long timestamp;
     private String championName;
+    private String matchType;
 
 
     public long getGameId() {
@@ -65,6 +66,12 @@ public class Matches {
     }
     public void setChampionName(String championName) {
         this.championName = championName;
+    }
+    public String getMatchType() {
+        return matchType;
+    }
+    public void setMatchType(String matchType) {
+        this.matchType = matchType;
     }
     
 

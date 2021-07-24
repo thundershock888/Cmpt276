@@ -133,11 +133,12 @@ public class Main {
       System.out.println("data saved");
 
       JsonNode champJson = (new ObjectMapper()).readTree(Api.getChampionName());
+      JsonNode matchJson = (new ObjectMapper()).readTree(Api.getMatchTypes());
+      System.out.println("printing match json: "+matchJson.get(64));
 
-      System.out.println("match list 0: "+ node.get("matches").get(0));
       
       for(int i = matchList.getStartIndex(); i< matchList.getEndIndex(); i++){
-        matchList.addMatch(node.get("matches").get(i), champJson);
+        matchList.addMatch(node.get("matches").get(i), champJson, matchJson);
       }
 
     }catch(JsonProcessingException e){
@@ -219,7 +220,7 @@ public class Main {
     model.put("platformId", matchList.getMatch(0).getPlatformId());
     model.put("gameId", matchList.getMatch(0).getGameId());
     model.put("champion",matchList.getMatch(0).getChampionName());
-    model.put("queue",matchList.getMatch(0).getQueue());
+    model.put("queue",matchList.getMatch(0).getMatchType());
     model.put("season",matchList.getMatch(0).getSeason());
     model.put("timestamp",matchList.getMatch(0).getTimestamp());
     model.put("role",matchList.getMatch(0).getRole());
@@ -249,9 +250,11 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
-    System.out.println("match 0: "+ matchList.getMatch(0).getRole());
-    System.out.println("match 0: "+ matchList.getMatch(0).getLane());
-    System.out.println("champion name for match 0: "+ matchList.getMatch(0).getChampionName());
+    System.out.println("Last match role: "+ matchList.getMatch(0).getRole());
+    System.out.println("Last match lane: "+ matchList.getMatch(0).getLane());
+    System.out.println("last match champion: "+ matchList.getMatch(0).getChampionName());
+    System.out.println("match id: "+ matchList.getMatch(0).getGameId());
+    System.out.println("match type: "+matchList.getMatch(0).getMatchType());
   }
 
 
