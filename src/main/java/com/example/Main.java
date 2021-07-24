@@ -109,20 +109,37 @@ public class Main {
       e.printStackTrace();
     }
   }
+
+
+  public static String getVersion(){//gets version of game
+    try{
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode node = objectMapper.readTree(Api.getVersion());
+      return node.get(0).asText();
+    }catch(JsonProcessingException e){
+      e.printStackTrace();
+      return "getVersion did not work";
+    }
+  }
+
   //Summoner Match retrival, doesnt work yet
   public static void getSummonerMatch(MatchList matchList, String id){//using getSummoner data we are able to view their last 100 games.
     try{
-      ObjectMapper objectMapper = new ObjectMapper();
-      JsonNode node = objectMapper.readTree(Api.getMatchesBySummonerId(id));
+      JsonNode node = (new ObjectMapper()).readTree(Api.getMatchesBySummonerId(id));
       //System.out.println("matches: "+ node);
 //doesnt work
       matchList.setStartIndex(node.get("startIndex").asInt());
       matchList.setTotalGames(node.get("totalGames").asInt());
       matchList.setEndIndex(node.get("endIndex").asInt());
+      System.out.println("data saved");
+
+      JsonNode champJson = (new ObjectMapper()).readTree(Api.getChampionName());
 
       System.out.println("match list 0: "+ node.get("matches").get(0));
+
+      
       for(int i = matchList.getStartIndex(); i< matchList.getEndIndex(); i++){
-        matchList.addMatch(node.get("matches").get(i));
+        matchList.addMatch(node.get("matches").get(i), champJson);
       }
 
     }catch(JsonProcessingException e){
@@ -200,7 +217,6 @@ public class Main {
   }
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
-
     String pid = "Delicious";
     Summoner summoner = new Summoner();
     getSummoner(summoner, pid);
@@ -223,6 +239,7 @@ public class Main {
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
     System.out.println("match 0: "+ matchList.getMatch(0).getLane());
+    System.out.println("champion name for match 0: "+ matchList.getMatch(0).getChampionName());
   }
 
 

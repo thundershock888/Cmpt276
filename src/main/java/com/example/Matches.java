@@ -9,8 +9,9 @@ public class Matches {
     private int queue;
     private String lane;
     private long timestamp;
+    private String championName;
 
-    
+
     public long getGameId() {
         return gameId;
     }
@@ -59,7 +60,12 @@ public class Matches {
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
-    
+    public String getChampionName() {
+        return championName;
+    }
+    public void setChampionName(String championName) {
+        this.championName = championName;
+    }
     
 
 

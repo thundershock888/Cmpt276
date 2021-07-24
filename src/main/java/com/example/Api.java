@@ -124,6 +124,16 @@ public class Api {
         return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ id+"?api_key="+key);
     }
 
+    public static String getVersion(){//retrieves version of game, used to get champion data
+        return fetchDataFromApiAsString("https://ddragon.leagueoflegends.com/api/versions.json");
+    }
+
+    public static String getChampionData(String version){//retrieves champion data such as names
+        return fetchDataFromApiAsString("https://ddragon.leagueoflegends.com/cdn/"+ version + "/data/en_US/champion.json");
+    }
+    public static String getChampionName(){
+        return fetchDataFromApiAsString("https://raw.githubusercontent.com/Sunderinq/League-champion-json/main/champions.json");
+    }
 }
 
 
