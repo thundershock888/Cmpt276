@@ -122,12 +122,11 @@ public class Main {
     }
   }
 
-  //Summoner Match retrival, doesnt work yet
+  //Summoner Match retrival
   public static void getSummonerMatch(MatchList matchList, String id){//using getSummoner data we are able to view their last 100 games.
     try{
       JsonNode node = (new ObjectMapper()).readTree(Api.getMatchesBySummonerId(id));
-      //System.out.println("matches: "+ node);
-//doesnt work
+
       matchList.setStartIndex(node.get("startIndex").asInt());
       matchList.setTotalGames(node.get("totalGames").asInt());
       matchList.setEndIndex(node.get("endIndex").asInt());
@@ -136,7 +135,6 @@ public class Main {
       JsonNode champJson = (new ObjectMapper()).readTree(Api.getChampionName());
 
       System.out.println("match list 0: "+ node.get("matches").get(0));
-
       
       for(int i = matchList.getStartIndex(); i< matchList.getEndIndex(); i++){
         matchList.addMatch(node.get("matches").get(i), champJson);
@@ -220,12 +218,13 @@ public class Main {
 
     model.put("platformId", matchList.getMatch(0).getPlatformId());
     model.put("gameId", matchList.getMatch(0).getGameId());
-    model.put("champion",matchList.getMatch(0).getChampion());
+    model.put("champion",matchList.getMatch(0).getChampionName());
     model.put("queue",matchList.getMatch(0).getQueue());
     model.put("season",matchList.getMatch(0).getSeason());
     model.put("timestamp",matchList.getMatch(0).getTimestamp());
     model.put("role",matchList.getMatch(0).getRole());
     model.put("lane",matchList.getMatch(0).getLane());
+
     return "main";
   }
   public static void main(String[] args) throws Exception {
