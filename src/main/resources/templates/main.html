@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body onload="checkSearch()">
     
     <div class="basic-header-1">
         <div class="logo">
@@ -44,7 +44,7 @@
                         <div class="input-field ">
                             <div class="col s1">
                                 <button class="searchButton" id="searchButton" >
-                                <i class="material-icons">search</i>
+                                <i class="material-icons" >search</i>
                             </div>
                         </button></div>
                       </form>
@@ -130,21 +130,7 @@
         
     </div>
 
-    <!-- infos -->
-    <div class="container" style="margin-top: 40px;">
-        <ul class="collapsible z-depth-0 infos" style="border: none;">
-        </ul>
-    </div>
-
-    <!-- only for admin -->
-    <div class="container" style="margin-top: 40px;">
-        <ul class="collapsible z-depth-0 admin-info" style="border: none;">
-        </ul>
-    </div>
-    
     <!--Search result-->
-    
-    <h3 class="container center-align" style = "background:whitesmoke; width: 30%;" onClick="showSearchTable()"> Show Search Result </h3>
     <br>
 
     <div id="searching" style="display: none">
@@ -236,6 +222,19 @@
       </table>
     </div>
     </div>
+    
+    <!-- infos -->
+    <div class="container" style="margin-top: 40px;">
+      <ul class="collapsible z-depth-0 infos" style="border: none;">
+      </ul>
+  </div>
+
+  <!-- only for admin -->
+  <div class="container" style="margin-top: 40px;">
+      <ul class="collapsible z-depth-0 admin-info" style="border: none;">
+      </ul>
+  </div>
+  
 
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
@@ -260,16 +259,18 @@
 
         //firestore settings
         db.settings({merge: true});
-        
-    function showSearchTable(){
+
+      function checkSearch() {
+            if(window.location.href.indexOf("summ?name") > -1) 
+            {
       var x = document.getElementById("searching");
       if (x.style.display === "none") {
         x.style.display = 'block';
         }else {
           x.style.display ='none';
         }
-      }
-        
+            }
+        }
 </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

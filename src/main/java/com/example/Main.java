@@ -152,29 +152,6 @@ public class Main {
     return "main";
   }
 
-  @RequestMapping("/login")
-  String login() {
-    return "login";
-  }
-
-  @RequestMapping("/logintest")
-  String logintest() {
-    return "logintest";
-  }
-  @RequestMapping("/logsuccess")
-  String logsucc() {
-    return "logsuccess";
-  }
-
-  @RequestMapping("/signup")
-  String signup() {
-    return "signup";
-  }
-  @RequestMapping("/recover")
-  String recover() {
-    return "recover";
-  }
-
   @RequestMapping("/search")
   String search() {
     return "search";
