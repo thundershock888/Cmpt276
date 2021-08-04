@@ -68,7 +68,7 @@
   }
   
   .searchTerm:focus{
-    color: #c2a657;
+    color: 24639f;
   }
   
   .searchButton {
@@ -154,3 +154,4 @@
   th.head{
     width: 20%;
   }
+  

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	-->
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
+    <script data-main="api" src="require.js" defer></script>
+
+</head>
+<body>
+    <!--Champion table-->
+    <h4>Champions</h4>
+    <table class="container">
+        <tr>
+            <th>Champion name:</th>
+            <td th:text="${names}"></td>
+        </tr>
+        <tr>
+            <th th:text="${titles}"></th>
+        </tr>
+        <tr>
+            <td th:text="${blurbs}"></td>
+        </tr>
+        <tr>
+            <td>Information:</td>
+            <td>
+                <ul>
+                    <li>Attack:</li>
+                    <li>Magic:</li>
+                    <li>Defense:</li>
+                    <li>Difficulty:</li>
+                    <li>Partype:</li>
+                </ul>
+                <td>
+                    <ul>
+                        <li th:text="${attacks}"></li>
+                        <li th:text="${magics}"></li>
+                        <li th:text="${defenses}"></li>
+                        <li th:text="${difficultys}"></li>
+                        <li th:text="${partypes}"></li>
+                    </ul>
+                </td>
+            </td>
+        </tr>
+    </table>
+</body>

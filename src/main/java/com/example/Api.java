@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
-    public static String key = System.getenv().get("RIOT_API_KEY"); 
+    public static String key = "RGAPI-f5c07eee-6c98-4488-b4ed-79ad58d77888";/*System.getenv().get("RIOT_API_KEY"); */
     
 /*
      static {
@@ -32,6 +32,8 @@ public class Api {
     static BufferedReader reader;
     static String line;
     static StringBuffer responseContent = new StringBuffer();
+
+   
     public static String fetchDataFromApiGivenUsername(String username){
         return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username+"?api_key="+ key);
     }
@@ -127,10 +129,15 @@ public class Api {
     public static String getVersion(){//retrieves version of game, used to get champion data
         return fetchDataFromApiAsString("https://ddragon.leagueoflegends.com/api/versions.json");
     }
-
+/*
     public static String getChampionData(String version){//retrieves champion data such as names
         return fetchDataFromApiAsString("https://ddragon.leagueoflegends.com/cdn/"+ version + "/data/en_US/champion.json");
+    }*/
+    
+    public static String getChampionData(String id){//retrieves champion data such as names
+        return fetchDataFromApiAsString("http://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/champion/"+id+".json");
     }
+    
     public static String getChampionName(){//custom made json file to get champion names
         return fetchDataFromApiAsString("https://raw.githubusercontent.com/Sunderinq/League-champion-json/main/champions.json");
     }

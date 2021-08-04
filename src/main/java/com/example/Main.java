@@ -32,12 +32,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import champs.Aatrox;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -60,7 +63,6 @@ public class Main {
   String intro(){
     return "main";
   }
-
 
   public static void getSummoner(Summoner summoner, String name){// using api.java we are able to parse the website for basic information on each summoner
     if(name.contains(" ")){
@@ -147,6 +149,27 @@ public class Main {
     }
   }
 
+  
+  public static void getChampion(ChampionRead championRead, String name){
+    try{
+      JsonNode node = (new ObjectMapper()).readTree(Api.getChampionData(name));
+      //System.out.println("champion: "+ node);
+
+      championRead.setId(node.get("data").get(name).get("id").asText());
+      championRead.setKey(node.get("data").get(name).get("key").asText());
+      championRead.setTitle(node.get("data").get(name).get("title").asText());
+      championRead.setName(node.get("data").get(name).get("name").asText());
+      championRead.setBlurb(node.get("data").get(name).get("blurb").asText());
+      championRead.setInfoAttack(node.get("data").get(name).get("info").get("attack").asInt());
+      championRead.setInfoDefense(node.get("data").get(name).get("info").get("defense").asInt());
+      championRead.setInfoMagic(node.get("data").get(name).get("info").get("magic").asInt());
+      championRead.setInfoDifficulty(node.get("data").get(name).get("info").get("difficulty").asInt());
+      championRead.setPartype(node.get("data").get(name).get("partype").asText());
+    
+    }catch(JsonProcessingException e){
+      e.printStackTrace();
+    }
+  }
 
   @RequestMapping("/")
   String index() {
@@ -157,7 +180,37 @@ public class Main {
   String search() {
     return "search";
   }
+  @GetMapping("/champ")
+  public String ChampDisp(Map<String,Object> model, @RequestParam String name){
+    System.out.println(name);
+    if (name == null){
+      return "error";
+    }
+    name = name.substring(0,1).toUpperCase()+name.substring(1);
+      System.out.println(name);
+      
+    ChampionRead championRead = new ChampionRead();
+    getChampion(championRead, name);
 
+    System.out.println("champ id :"+ championRead.getId());
+    System.out.println("champ key:"+ championRead.getKey());
+    System.out.println("champ title :"+ championRead.getTitle());
+    System.out.println("Champ name :" + championRead.getName());
+    System.out.println("champ blurb :"+ championRead.getBlurb());
+    System.out.println("champ attack :"+ championRead.getInfoAttack()+" magic: "+ championRead.getInfoMagic()+" defense: " 
+          +championRead.getInfoDefense()+" difficulty:"+ championRead.getInfoDifficulty());
+    System.out.println("champ partype: "+championRead.getPartype());
+
+    model.put("names", championRead.getName());
+    model.put("titles", championRead.getTitle());
+    model.put("blurbs", championRead.getBlurb());
+    model.put("attacks",championRead.getInfoAttack());
+    model.put("magics", championRead.getInfoMagic());
+    model.put("defenses", championRead.getInfoDefense());
+    model.put("difficultys",championRead.getInfoDifficulty());
+    model.put("partypes", championRead.getPartype());
+    return "champion";
+  }
   @GetMapping("/summ")
   public String searching (Map<String, Object> model, @RequestParam String name) {
     System.out.println(name);
@@ -235,6 +288,19 @@ public class Main {
     System.out.println("last match champion: "+ matchList.getMatch(0).getChampionName());
     System.out.println("match id: "+ matchList.getMatch(0).getGameId());
     System.out.println("match type: "+matchList.getMatch(0).getMatchType());
+
+    String id ="Aatrox";
+    ChampionRead championRead = new ChampionRead();
+    getChampion(championRead, id);
+    System.out.println("champ id :"+ championRead.getId());
+    System.out.println("champ key:"+ championRead.getKey());
+    System.out.println("champ title :"+ championRead.getTitle());
+    System.out.println("Champ name :" + championRead.getName());
+    System.out.println("champ blurb :"+ championRead.getBlurb());
+    System.out.println("champ attack :"+ championRead.getInfoAttack()+" magic: "+ championRead.getInfoMagic()+" defense: " 
+          +championRead.getInfoDefense()+" difficulty:"+ championRead.getInfoDifficulty());
+    System.out.println("champ partype: "+championRead.getPartype());
+
   }
 
 

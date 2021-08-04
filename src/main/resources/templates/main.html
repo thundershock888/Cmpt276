@@ -38,7 +38,7 @@
                     <form th:action="@{/summ}" method="get">
                         <div class="row">
                             <div class="input-field col s10">
-                                <input type="text" id="name" name="name" placeholder="Search summoner" required ></div>
+                                <input type="text" id="name" name="name" placeholder="Search summoner" required class="searchTerm"></div>
                         <div class="input-field ">
                             <div class="col s1">
                                 <button class="searchButton" id="searchButton" >
@@ -59,7 +59,21 @@
               <a href="#" class="modal-trigger" data-target="modal-account">Account</a></li>
           <li class="logged-in" style = "display:none">
               <a href="#" class="modal-trigger" id="logout">Logout</a></li>
-          
+              <li>
+                <div class="search right" >
+                    <form th:action="@{/champ}" method="get">
+                        <div class="row">
+                            <div class="input-field col s10">
+                                <input type="text" id="name" name="name" placeholder="Search Champion" required label="input-field" class="searchTerm"></div>
+                        <div class="input-field ">
+                            <div class="col s1">
+                                <button class="searchButton" id="searchButton" >
+                                <i class="material-icons" >search</i>
+                            </div>
+                        </button></div>
+                      </form>
+                </div>
+             </li>
           
 
         </ul>
