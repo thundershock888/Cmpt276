@@ -1,0 +1,107 @@
+<!-- styling -->
+
+<head>
+  <style>
+  
+    body {
+      background-color: #333;
+    }
+
+
+      ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+     
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 0 0 200px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 2%;
+      margin: 5px;
+      font-size: 20px;
+      text-align: center;
+      background-color: beige;
+      border-width: 10px;
+      table-layout: fixed ;
+            
+    }
+
+    .championName{
+      font-size: 30px;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-transform: uppercase;
+      width: 250;
+    }
+
+    .championIcon {
+      border-radius: 50%;
+      width: 200 ;
+    }
+
+    .championDescription {
+      font-size: 25px;
+    }
+
+    .title {
+      font-size: 40px;
+      display: block;
+      margin-top: 30px;
+      margin-bottom: -40px;;
+      text-align: center;
+      color: #c2a657;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div class = "title">
+    <h1> CHAMPIONS</h1>
+    </div>
+
+
+<!--styling-->
+  <script>
+    var ul = document.createElement('ul')
+
+    fetch('champions.json').then(function(res) {
+      res.json().then(function(champions) {
+        champions.forEach(function(champion) {
+          ul.innerHTML += `
+            <li>
+              <div class ="championName"> 
+                <span>${champion.name}</span>
+              </div>
+
+              <br>
+
+              <div class = "championIcon">
+                <img src="${champion.icon}" class ="championIcon">
+              </div>
+
+              <br>
+              
+              <div class = "championDescription">
+                <div>${champion.description}</div>
+              </div>
+
+            </li>
+          `
+        })
+      })
+    })
+
+    document.body.appendChild(ul)
+  </script>
+</body>
