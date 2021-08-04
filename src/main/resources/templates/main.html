@@ -14,8 +14,6 @@
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
     <script data-main="api" src="require.js" defer></script>
 
-
-
 </head>
 
 <body onload="checkSearch()">
@@ -132,10 +130,13 @@
 
     <!--Search result-->
     <br>
-
     <div id="searching" style="display: none">
       <table class="container" >
         <thead>
+          <tr>
+            <!--to display pfp-->
+            <th id="pfpPLACE"><input style="display: none;" name="pf" th:value=${pfps}></th>
+          </tr>
         <tr>
           <th class="head">Summoner name: </th>
           <td th:text="${names}"></td>
@@ -235,6 +236,7 @@
       </ul>
   </div>
   
+  
 
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
@@ -266,11 +268,23 @@
       var x = document.getElementById("searching");
       if (x.style.display === "none") {
         x.style.display = 'block';
+        showPFP();
         }else {
           x.style.display ='none';
         }
             }
         }
+
+        function showPFP() {
+          var x = document.getElementsByName("pf")[0].value;
+          var y = document.createElement("IMG");
+          var z = "https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon"+ x +".png";
+          y.setAttribute("src", z);
+          document.body.appendChild(y);
+          var list = document.getElementById("pfpPLACE");    // Get the <ul> element to insert a new node
+          list.insertBefore(y, list.childNodes[0]);
+}
+
 </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

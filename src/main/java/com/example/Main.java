@@ -78,7 +78,8 @@ public class Main {
       summoner.setId(node.get("id").asText());
       summoner.setPuuid(node.get("puuid").asText());
       summoner.setSummonerLevel(node.get("summonerLevel").asLong());
-      
+
+
     }catch(JsonProcessingException e){
       e.printStackTrace();
     }
@@ -171,7 +172,7 @@ public class Main {
 
     MatchList matchList = new MatchList();
     getSummonerMatch(matchList, summoner.getAccountId());
-
+    
     System.out.println("Name: "+ summoner.getName());
     System.out.println("Level: "+ summoner.getSummonerLevel());
     System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
@@ -181,6 +182,7 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
+    System.out.println(summoner.getProfileIconId());
 
     model.put("names", summoner.getName());
     model.put("levels", summoner.getSummonerLevel());
@@ -193,6 +195,7 @@ public class Main {
     model.put("news", ranked.isFreshBlood());
     model.put("veterans", ranked.isVeteran());
     model.put("inactives", ranked.isInactive());
+    model.put("pfps", summoner.getProfileIconId());
 
     model.put("platformId", matchList.getMatch(0).getPlatformId());
     model.put("gameId", matchList.getMatch(0).getGameId());
