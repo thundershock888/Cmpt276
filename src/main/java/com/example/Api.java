@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
-    public static String key = "RGAPI-f5c07eee-6c98-4488-b4ed-79ad58d77888";/*System.getenv().get("RIOT_API_KEY"); */
+    public static String key = System.getenv().get("RIOT_API_KEY"); 
     
 /*
      static {
