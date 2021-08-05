@@ -1,9 +1,9 @@
 package com.example;
 
 import java.util.List;
-
-import champs.Image;
-import champs.Stats;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ChampionRead{
 	private String id;
@@ -105,12 +105,37 @@ public class ChampionRead{
 	}
 	public void setTags1(String tags1){
 		this.tags1 = tags1;
-	}/*
+	}
+	/*
 	public Stats getStats(){
 		return stats;
 	}
 	public void setStats(Stats stats){
 		this.stats = stats;
 	}*/
+
+	public static void getChampion(ChampionRead championRead, String name){
+		try{
+		  JsonNode node = (new ObjectMapper()).readTree(Api.getChampionData(name));
+		  //System.out.println("champion: "+ node);
+
+		  championRead.setId(node.get("data").get(name).get("id").asText());
+		  championRead.setKey(node.get("data").get(name).get("key").asText());
+		  championRead.setTitle(node.get("data").get(name).get("title").asText());
+		  championRead.setName(node.get("data").get(name).get("name").asText());
+		  championRead.setBlurb(node.get("data").get(name).get("blurb").asText());
+		  championRead.setInfoAttack(node.get("data").get(name).get("info").get("attack").asInt());
+		  championRead.setInfoDefense(node.get("data").get(name).get("info").get("defense").asInt());
+		  championRead.setInfoMagic(node.get("data").get(name).get("info").get("magic").asInt());
+		  championRead.setInfoDifficulty(node.get("data").get(name).get("info").get("difficulty").asInt());
+		  championRead.setPartype(node.get("data").get(name).get("partype").asText());
+		  championRead.setImage(node.get("data").get(name).get("image").get("full").asText());
+		  championRead.setTags(node.get("data").get(name).get("tags").get(0).asText());
+		  championRead.setTags1(node.get("data").get(name).get("tags").get(1).asText());
+		
+		}catch(JsonProcessingException e){
+		  e.printStackTrace();
+		}
+	}
 
 }

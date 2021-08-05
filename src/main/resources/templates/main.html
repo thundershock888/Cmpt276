@@ -186,6 +186,10 @@
             <td th:text="${winstreak}"></td>
           </tr>
           <tr>
+            <td>Win Ratio</td>
+            <td th:text="${winratio}"></td>
+          </tr>
+          <tr>
             <td>New player?</td>
             <td th:text="${news}"></td>
           </tr>
@@ -206,7 +210,7 @@
           </table>
           <table class="logged-in container" style = "display:none">
         <tr>
-          <th>Last games </th>
+          <th colspan="2">Last games </th>
         </tr>
         <tr>
           <td>Game # 1</td>
@@ -223,18 +227,147 @@
             </ul>
             <td>
               <ul>
-                <li th:text="${platformId}"></li> 
-                <li th:text="${gameId}"></li>
-                <li ><a th:href="|/champ?name=${champion}|" th:text="${champion}" ></a></li>
-                <li th:text="${queue}"></li>
-                <li th:text="${season}"></li>
-                <li th:text="${timestamp}"></li>
-                <li th:text="${role}"></li>
-                <li th:text="${lane}"></li>
+                <li th:text="${platformId0}"></li> 
+                <li th:text="${gameId0}"></li>
+                <li ><a th:href="|/champ?name=${champion0}|" th:text="${champion0}" ></a></li>
+                <li th:text="${queue0}"></li>
+                <li th:text="${season0}"></li>
+                <li th:text="${timestamp0}"></li>
+                <li th:text="${role0}"></li>
+                <li th:text="${lane0}"></li>
               </ul>
             </td>
           </td>
-
+          <td></td>
+          <td>Game # 2</td>
+          <td>
+            <ul>
+              <li>Platform </li>
+              <li>Game ID</li>
+              <li>Champion</li>
+              <li>Queue</li>
+              <li>Season</li>
+              <li>Timestamp</li>
+              <li>Role</li>
+              <li>Lane</li>
+            </ul>
+            <td>
+              <ul>
+                <li th:text="${platformId1}"></li> 
+                <li th:text="${gameId1}"></li>
+                <li ><a th:href="|/champ?name=${champion1}|" th:text="${champion1}" ></a></li>
+                <li th:text="${queue1}"></li>
+                <li th:text="${season1}"></li>
+                <li th:text="${timestamp1}"></li>
+                <li th:text="${role1}"></li>
+                <li th:text="${lane1}"></li>
+              </ul>
+            </td>
+          </td>
+          <tr>
+          <td>Game # 3</td>
+          <td>
+            <ul>
+              <li>Platform </li>
+              <li>Game ID</li>
+              <li>Champion</li>
+              <li>Queue</li>
+              <li>Season</li>
+              <li>Timestamp</li>
+              <li>Role</li>
+              <li>Lane</li>
+            </ul>
+            <td>
+              <ul>
+                <li th:text="${platformId2}"></li> 
+                <li th:text="${gameId2}"></li>
+                <li ><a th:href="|/champ?name=${champion2}|" th:text="${champion2}" ></a></li>
+                <li th:text="${queue2}"></li>
+                <li th:text="${season2}"></li>
+                <li th:text="${timestamp2}"></li>
+                <li th:text="${role2}"></li>
+                <li th:text="${lane2}"></li>
+              </ul>
+            </td>
+          </td>
+          <td></td>
+          <td>Game # 4</td>
+          <td>
+            <ul>
+              <li>Platform </li>
+              <li>Game ID</li>
+              <li>Champion</li>
+              <li>Queue</li>
+              <li>Season</li>
+              <li>Timestamp</li>
+              <li>Role</li>
+              <li>Lane</li>
+            </ul>
+            <td>
+              <ul>
+                <li th:text="${platformId3}"></li> 
+                <li th:text="${gameId3}"></li>
+                <li ><a th:href="|/champ?name=${champion3}|" th:text="${champion3}" ></a></li>
+                <li th:text="${queue3}"></li>
+                <li th:text="${season3}"></li>
+                <li th:text="${timestamp3}"></li>
+                <li th:text="${role3}"></li>
+                <li th:text="${lane3}"></li>
+              </ul>
+            </td>
+        </tr>
+          <tr>
+          <td>Game # 5</td>
+          <td>
+            <ul>
+              <li>Platform </li>
+              <li>Game ID</li>
+              <li>Champion</li>
+              <li>Queue</li>
+              <li>Season</li>
+              <li>Timestamp</li>
+              <li>Role</li>
+              <li>Lane</li>
+            </ul>
+            <td>
+              <ul>
+                <li th:text="${platformId4}"></li> 
+                <li th:text="${gameId4}"></li>
+                <li ><a th:href="|/champ?name=${champion4}|" th:text="${champion4}" ></a></li>
+                <li th:text="${queue4}"></li>
+                <li th:text="${season4}"></li>
+                <li th:text="${timestamp4}"></li>
+                <li th:text="${role4}"></li>
+                <li th:text="${lane4}"></li>
+              </ul>
+            </td>
+          </td>
+          <td></td>
+          <td>Game # 6</td>
+          <td>
+            <ul>
+              <li>Platform </li>
+              <li>Game ID</li>
+              <li>Champion</li>
+              <li>Queue</li>
+              <li>Season</li>
+              <li>Timestamp</li>
+              <li>Role</li>
+              <li>Lane</li>
+            </ul>
+            <td>
+              <ul>
+                <li th:text="${platformId5}"></li> 
+                <li th:text="${gameId5}"></li>
+                <li ><a th:href="|/champ?name=${champion5}|" th:text="${champion5}" ></a></li>
+                <li th:text="${queue5}"></li>
+                <li th:text="${season5}"></li>
+                <li th:text="${timestamp5}"></li>
+                <li th:text="${role5}"></li>
+                <li th:text="${lane5}"></li>
+              </ul>
+            </td>
+          </td>
         </tr>
       </table>
     </div>

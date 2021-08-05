@@ -152,29 +152,6 @@ public class Main {
   }
 
   
-  public static void getChampion(ChampionRead championRead, String name){
-    try{
-      JsonNode node = (new ObjectMapper()).readTree(Api.getChampionData(name));
-      //System.out.println("champion: "+ node);
-
-      championRead.setId(node.get("data").get(name).get("id").asText());
-      championRead.setKey(node.get("data").get(name).get("key").asText());
-      championRead.setTitle(node.get("data").get(name).get("title").asText());
-      championRead.setName(node.get("data").get(name).get("name").asText());
-      championRead.setBlurb(node.get("data").get(name).get("blurb").asText());
-      championRead.setInfoAttack(node.get("data").get(name).get("info").get("attack").asInt());
-      championRead.setInfoDefense(node.get("data").get(name).get("info").get("defense").asInt());
-      championRead.setInfoMagic(node.get("data").get(name).get("info").get("magic").asInt());
-      championRead.setInfoDifficulty(node.get("data").get(name).get("info").get("difficulty").asInt());
-      championRead.setPartype(node.get("data").get(name).get("partype").asText());
-      championRead.setImage(node.get("data").get(name).get("image").get("full").asText());
-      championRead.setTags(node.get("data").get(name).get("tags").get(0).asText());
-      championRead.setTags1(node.get("data").get(name).get("tags").get(1).asText());
-     
-    }catch(JsonProcessingException e){
-      e.printStackTrace();
-    }
-  }
 
   @RequestMapping("/")
   String index() {
@@ -192,11 +169,11 @@ public class Main {
       return "error";
     }
     name = name.substring(0,1).toUpperCase()+name.substring(1);
-      System.out.println(name);
       
     ChampionRead championRead = new ChampionRead();
-    getChampion(championRead, name);
-
+    ChampionRead.getChampion(championRead, name);
+    Stats stats = new Stats();
+    Stats.getChampionStats(stats, name);
     System.out.println("champ id :"+ championRead.getId());
     System.out.println("champ key:"+ championRead.getKey());
     System.out.println("champ title :"+ championRead.getTitle());
@@ -218,6 +195,27 @@ public class Main {
     model.put("image", championRead.getImage());
     model.put("tag",championRead.getTags());
     model.put("tag1",championRead.getTags1());
+    model.put("mpregens",stats.getMpregen());
+    model.put("attackdamageperlevels",stats.getAttackdamageperlevel());
+    model.put("mp",stats.getMp());
+    model.put("attackranges",stats.getAttackrange());
+    model.put("hps",stats.getHp());
+    model.put("hpperlevels",stats.getHpperlevel());
+    model.put("hpregens",stats.getHpregen());
+    model.put("mpregenperlevels",stats.getMpregenperlevel());
+    model.put("spellblocks",stats.getSpellblock());
+    model.put("critperlevels",stats.getCritperlevel());
+    model.put("movespeeds", stats.getMovespeed());
+    model.put("mpperlevels", stats.getMpperlevel());
+    model.put("armors", stats.getArmor());
+    model.put("armorperlevels", stats.getArmorperlevel());
+    model.put("crits", stats.getCrit());
+    model.put("attackdamages", stats.getAttackdamage());
+    model.put("attackspeeds", stats.getAttackspeed());
+    model.put("spellblockperlevels", stats.getSpellblockperlevel());
+    model.put("attackspeedperlevels", stats.getAttackspeedperlevel());
+    model.put("hpregenperlevels", stats.getHpregenperlevel());
+
 
     return "champion";
     
@@ -247,8 +245,12 @@ public class Main {
     System.out.println("New player? "+ ranked.isFreshBlood());
     System.out.println("Veteran player? "+ ranked.isVeteran());
     System.out.println("Inactive player? "+ ranked.isInactive());
-    System.out.println(summoner.getProfileIconId());
-
+    
+    float win = ranked.getWins();
+    float loss = ranked.getLosses();
+    float winR = win/(win+loss)*100;
+    System.out.println("RATIO "+ winR);
+    
     model.put("names", summoner.getName());
     model.put("levels", summoner.getSummonerLevel());
     model.put("tiers", ranked.getTier());
@@ -261,18 +263,22 @@ public class Main {
     model.put("veterans", ranked.isVeteran());
     model.put("inactives", ranked.isInactive());
     model.put("pfps", summoner.getProfileIconId());
+    model.put("winratio", winR);
 
-    model.put("platformId", matchList.getMatch(0).getPlatformId());
-    model.put("gameId", matchList.getMatch(0).getGameId());
-    model.put("champion",matchList.getMatch(0).getChampionName());
-    model.put("queue",matchList.getMatch(0).getMatchType());
-    model.put("season",matchList.getMatch(0).getSeason());
-    model.put("timestamp",matchList.getMatch(0).getTimestamp());
-    model.put("role",matchList.getMatch(0).getRole());
-    model.put("lane",matchList.getMatch(0).getLane());
-
+    for (int i=0; i<6; i++){
+      model.put("platformId"+(i), matchList.getMatch(i).getPlatformId());
+      model.put("gameId"+(i), matchList.getMatch(i).getGameId());
+      model.put("champion"+(i),matchList.getMatch(i).getChampionName());
+      model.put("queue"+(i),matchList.getMatch(i).getMatchType());
+      model.put("season"+(i),matchList.getMatch(i).getSeason());
+      model.put("timestamp"+(i),matchList.getMatch(i).getTimestamp());
+      model.put("role"+(i),matchList.getMatch(i).getRole());
+      model.put("lane"+(i),matchList.getMatch(i).getLane());
+    }
     return "main";
   }
+  
+	
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
     String pid = "Delicious";
@@ -303,7 +309,9 @@ public class Main {
 
     String id ="Aatrox";
     ChampionRead championRead = new ChampionRead();
-    getChampion(championRead, id);
+    ChampionRead.getChampion(championRead, id);
+    Stats stats = new Stats();
+    Stats.getChampionStats(stats, id);
     System.out.println("champ id :"+ championRead.getId());
     System.out.println("champ key:"+ championRead.getKey());
     System.out.println("champ title :"+ championRead.getTitle());
@@ -314,6 +322,9 @@ public class Main {
     System.out.println("champ partype: "+championRead.getPartype());
     System.out.println("champ image: "+championRead.getImage());
     System.out.println("champ tag: "+championRead.getTags());
+    System.out.println("champ stats: "+stats.getMpregen());
+    System.out.println("champ damageperlevel: "+stats.getAttackdamageperlevel());
+
   }
 
 
