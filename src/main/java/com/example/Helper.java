@@ -2,6 +2,7 @@ package com.example;
 
 import com.google.gson.Gson;
 import match.MatchFromIdResponse;
+import match.UserMatchData;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

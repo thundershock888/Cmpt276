@@ -15,9 +15,10 @@ import java.util.stream.Collectors;
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
-    public static String key = System.getenv().get("RIOT_API_KEY"); 
+    //public static String key = System.getenv().get("RIOT_API_KEY");
+    public static String key;
     
-/*
+
      static {
          try {
              List<String> lines = Files.lines(Paths.get("apikeys.txt")).collect(Collectors.toList());
@@ -26,7 +27,7 @@ public class Api {
              System.out.println("Api keys doesn't exist, please add the file.");
              e.printStackTrace();
          }
-     }*/
+     }
 
     private static HttpURLConnection connection;
     static BufferedReader reader;

@@ -1,4 +1,4 @@
-package com.example;
+package match;
 
 public class Matches {
     private long gameId;

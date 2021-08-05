@@ -19,31 +19,25 @@ package com.example;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import org.apache.tomcat.util.json.JSONParser;
+import match.MatchList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import champs.Aatrox;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -223,6 +217,8 @@ public class Main {
 
   @GetMapping("/summ")
   public String searching (Map<String, Object> model, @RequestParam String name) {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd:mm", Locale.US);
+    GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("US/West"));
     System.out.println(name);
     if (name == null){
       return "error";
@@ -271,7 +267,9 @@ public class Main {
       model.put("champion"+(i),matchList.getMatch(i).getChampionName());
       model.put("queue"+(i),matchList.getMatch(i).getMatchType());
       model.put("season"+(i),matchList.getMatch(i).getSeason());
-      model.put("timestamp"+(i),matchList.getMatch(i).getTimestamp());
+
+      calendar.setTimeInMillis(matchList.getMatch(i).getTimestamp());
+      model.put("timestamp"+(i),sdf.format(calendar.getTime()));
       model.put("role"+(i),matchList.getMatch(i).getRole());
       model.put("lane"+(i),matchList.getMatch(i).getLane());
     }
@@ -280,6 +278,7 @@ public class Main {
   
 	
   public static void main(String[] args) throws Exception {
+
     SpringApplication.run(Main.class, args);
     String pid = "Delicious";
     Summoner summoner = new Summoner();
