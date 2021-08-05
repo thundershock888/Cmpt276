@@ -34,7 +34,7 @@
 <div class="nav-wrapper" >
     <ul id="nav-mobile">
         <li>
-              <form th:action="@{/summ}" method="get">
+              <form th:action="@{/pie}" method="get">
                 <div class="row">
                     <div class="input-field col s10">
                         <input type="text" id="name" name="name" placeholder="Search summoner" required></div>
@@ -119,13 +119,13 @@
             <td th:text="${inactives}"></td>
           </tr>
         <tr>
-          <td>Last __ games </td>
+          <td>Last games: Click to View More Details</td>
         </tr>
         <tr>
           <td>Game # 1</td>
           <td>
             <ul>
-              <li> platformId </li>
+              <li>platformId </li>
               <li>gameId</li>
               <li>champion</li>
               <li>queue</li>
@@ -138,6 +138,9 @@
 
         </tr>
       </table>
+
+
+
     </div>
            
 </body>

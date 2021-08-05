@@ -15,9 +15,10 @@ import java.util.stream.Collectors;
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
-    public static String key = System.getenv().get("RIOT_API_KEY"); 
+    //public static String key = System.getenv().get("RIOT_API_KEY");
+    public static String key;
     
-/*
+
      static {
          try {
              List<String> lines = Files.lines(Paths.get("apikeys.txt")).collect(Collectors.toList());
@@ -26,7 +27,11 @@ public class Api {
              System.out.println("Api keys doesn't exist, please add the file.");
              e.printStackTrace();
          }
-     }*/
+         if(key.length()<10){
+             key = System.getenv().get("RIOT_API_KEY");
+         }
+     }
+
 
     private static HttpURLConnection connection;
     static BufferedReader reader;
@@ -72,6 +77,7 @@ public class Api {
     }
     public static String getSummonderPuuidByUserName(String id){//returns the puuid of a league account, given the username
         String link = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + id+"?api_key="+ key;
+        System.out.println("link used = " + link);
         try {
             URL url = new URL(link);
             //System.out.println(link);
@@ -104,8 +110,10 @@ public class Api {
         String[] userData = responseContent.toString().split(",");
         for (int i = 0; i < userData.length; i++) {
             System.out.println(userData[i]);
+            System.out.println("index: " + i + " | " + userData[i]);
         }
         String puuid =userData[1].split(":")[1];
+        System.out.println("The split PUUID: " + puuid);
         puuid = puuid.substring(1, puuid.length()-1);
         System.out.println("printing puuid parsed: " + puuid);
         return puuid;

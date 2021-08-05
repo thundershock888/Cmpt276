@@ -19,31 +19,26 @@ package com.example;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import org.apache.tomcat.util.json.JSONParser;
+import match.MatchList;
+import match.UserMatchData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import champs.Aatrox;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -66,90 +61,11 @@ public class Main {
     return "main";
   }
 
-  public static void getSummoner(Summoner summoner, String name){// using api.java we are able to parse the website for basic information on each summoner
-    if(name.contains(" ")){
-      String replace = name.replace(" ", "%20");
-      name = replace;
-        }
-    try{
-      JsonNode node = (new ObjectMapper()).readTree(Api.fetchDataFromApiGivenUsername(name));
-      System.out.println("getSummoner: "+ node);
-      
-      summoner.setAccountId(node.get("accountId").asText());
-      summoner.setProfileIconId(node.get("profileIconId").asInt());
-      summoner.setRevisionDate(node.get("revisionDate").asLong());
-      summoner.setName(node.get("name").asText());
-      summoner.setId(node.get("id").asText());
-      summoner.setPuuid(node.get("puuid").asText());
-      summoner.setSummonerLevel(node.get("summonerLevel").asLong());
 
 
-    }catch(JsonProcessingException e){
-      e.printStackTrace();
-    }
-  }
 
-  public static void getRanked(Ranked ranked, String id){//using summoner data we are able to parse information about their ranked data
-    try{
-      ObjectMapper objectMapper = new ObjectMapper();
-      JsonNode node = objectMapper.readTree(Api.getRankedLeagueData(id));
-      System.out.println("getRanked: "+ node);
-     
-      ranked.setLeagueId(node.get(0).get("leagueId").asText());
-      ranked.setSummonerId(node.get(0).get("summonerId").asText());
-      ranked.setSummonerName(node.get(0).get("summonerName").asText());
-      ranked.setQueuetype(node.get(0).get("queueType").asText());
-      ranked.setTier(node.get(0).get("tier").asText());
-      ranked.setRank(node.get(0).get("rank").asText());
-      ranked.setLeaguePoints(node.get(0).get("leaguePoints").asInt());
-      ranked.setWins(node.get(0).get("wins").asInt());
-      ranked.setLosses(node.get(0).get("losses").asInt());
-      ranked.setHotStreak(node.get(0).get("hotStreak").asBoolean());
-      ranked.setVeteran(node.get(0).get("veteran").asBoolean());
-      ranked.setFreshBlood(node.get(0).get("freshBlood").asBoolean());
-      ranked.setInactive(node.get(0).get("inactive").asBoolean());
-
-
-    }catch(JsonProcessingException e){
-      e.printStackTrace();
-    }
-  }
-
-
-  public static String getVersion(){//gets version of game
-    try{
-      ObjectMapper objectMapper = new ObjectMapper();
-      JsonNode node = objectMapper.readTree(Api.getVersion());
-      return node.get(0).asText();
-    }catch(JsonProcessingException e){
-      e.printStackTrace();
-      return "getVersion did not work";
-    }
-  }
 
   //Summoner Match retrival
-  public static void getSummonerMatch(MatchList matchList, String id){//using getSummoner data we are able to view their last 100 games.
-    try{
-      JsonNode node = (new ObjectMapper()).readTree(Api.getMatchesBySummonerId(id));
-
-      matchList.setStartIndex(node.get("startIndex").asInt());
-      matchList.setTotalGames(node.get("totalGames").asInt());
-      matchList.setEndIndex(node.get("endIndex").asInt());
-      System.out.println("data saved");
-
-      JsonNode champJson = (new ObjectMapper()).readTree(Api.getChampionName());
-      JsonNode matchJson = (new ObjectMapper()).readTree(Api.getMatchTypes());
-      System.out.println("printing match json: "+matchJson.get(64));
-
-      
-      for(int i = matchList.getStartIndex(); i< matchList.getEndIndex(); i++){
-        matchList.addMatch(node.get("matches").get(i), champJson, matchJson);
-      }
-
-    }catch(JsonProcessingException e){
-      e.printStackTrace();
-    }
-  }
 
   
 
@@ -220,21 +136,34 @@ public class Main {
     return "champion";
     
   }
+  //when you click on a match
+  @GetMapping("/match")
+  public String match (Map<String, Object> model, @RequestParam String matchId){
+    UserMatchData match = new UserMatchData(matchId);
+    model.put("cs", match.getCs(1));
+    model.put("final Level", match.getLevel(1));
+    model.put("total gold", match.getTotalGold(1));
+    model.put("cs per minute", match.getCsPerMin(1));
+    return "main";
+  }
 
-  @GetMapping("/summ")
+
+  @GetMapping("/somethin")
   public String searching (Map<String, Object> model, @RequestParam String name) {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd:mm", Locale.US);
+    GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("US/West"));
     System.out.println(name);
     if (name == null){
       return "error";
     }
     Summoner summoner = new Summoner();
-    getSummoner(summoner, name);
+    Helper.getSummoner(summoner, name);
 
     Ranked ranked = new Ranked();
-    getRanked(ranked, summoner.getId()); 
+    Helper.getRanked(ranked, summoner.getId());
 
     MatchList matchList = new MatchList();
-    getSummonerMatch(matchList, summoner.getAccountId());
+    Helper.getSummonerMatch(matchList, summoner.getAccountId());
     
     System.out.println("Name: "+ summoner.getName());
     System.out.println("Level: "+ summoner.getSummonerLevel());
@@ -271,8 +200,10 @@ public class Main {
       model.put("champion"+(i),matchList.getMatch(i).getChampionName());
       model.put("queue"+(i),matchList.getMatch(i).getMatchType());
       model.put("season"+(i),matchList.getMatch(i).getSeason());
-      model.put("timestamp"+(i),matchList.getMatch(i).getTimestamp());
-      model.put("role"+(i),matchList.getMatch(i).getRole());
+
+      calendar.setTimeInMillis(matchList.getMatch(i).getTimestamp());
+      model.put("timestamp"+(i),sdf.format(calendar.getTime()));
+      model.put("role"+(i),"role"+(i));
       model.put("lane"+(i),matchList.getMatch(i).getLane());
     }
     return "main";
@@ -280,16 +211,22 @@ public class Main {
   
 	
   public static void main(String[] args) throws Exception {
+    List<UserMatchData> listOfMatches = Helper.getMatchResponseDataFromUserName("thundershock888");
+    for (int i = 0; i < listOfMatches.size(); i++) {
+      System.out.println("printing cs for game # " + i);
+      System.out.println(listOfMatches.get(i).getMaxCs());
+    }
+
     SpringApplication.run(Main.class, args);
     String pid = "Delicious";
     Summoner summoner = new Summoner();
-    getSummoner(summoner, pid);
+    Helper.getSummoner(summoner, pid);
 
     Ranked ranked = new Ranked();
-    getRanked(ranked, summoner.getId()); 
+    Helper.getRanked(ranked, summoner.getId());
 
     MatchList matchList = new MatchList();
-    getSummonerMatch(matchList, summoner.getAccountId());
+    Helper.getSummonerMatch(matchList, summoner.getAccountId());
 
     System.out.println("Encrypted account id: "+summoner.getAccountId());
     System.out.println("Name: "+ summoner.getName());
