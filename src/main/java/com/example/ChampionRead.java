@@ -16,10 +16,13 @@ public class ChampionRead{
 	private Integer magic;
 	private Integer difficulty;
 	private String partype;
-	
+	private String image;
+	private String tags;
+	private String tags1;
+	//private Stats stats;
+
 /*
-	private Image image;
-	private Stats stats;	
+		
 	private List<String> tags;*/
 	
 	public String getId(){
@@ -84,23 +87,30 @@ public class ChampionRead{
 	public void setPartype(String partype){
 		this.partype = partype;
 	}
-/*
-	public Image getImage(){
+	
+	public String getImage(){
 		return image;
 	}
-	public void setImage(Image image){
-		this.image = image;
-	}*/
-/*
+	public void setImage(String image){
+		this.image= image;
+	}
+	public String getTags(){
+		return tags;
+	}
+	public void setTags(String tags){
+		this.tags = tags;
+	}
+	public String getTags1(){
+		return tags1;
+	}
+	public void setTags1(String tags1){
+		this.tags1 = tags1;
+	}/*
 	public Stats getStats(){
 		return stats;
 	}
-
-
-
-	public List<String> getTags(){
-		return tags;
-	}
-*/
+	public void setStats(Stats stats){
+		this.stats = stats;
+	}*/
 
 }

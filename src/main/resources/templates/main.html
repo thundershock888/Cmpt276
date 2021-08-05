@@ -225,7 +225,7 @@
               <ul>
                 <li th:text="${platformId}"></li> 
                 <li th:text="${gameId}"></li>
-                <li th:text="${champion}"></li>
+                <li ><a th:href="|/champ?name=${champion}|" th:text="${champion}" ></a></li>
                 <li th:text="${queue}"></li>
                 <li th:text="${season}"></li>
                 <li th:text="${timestamp}"></li>

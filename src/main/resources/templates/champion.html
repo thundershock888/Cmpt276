@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Page</title>
+    <title>Champion information</title>
     <link rel="stylesheet" href="/stylesheets/main.css">
     
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	-->
@@ -13,24 +13,88 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
     <script data-main="api" src="require.js" defer></script>
-
+    
 </head>
 <body>
+    
+    <div class="basic-header-1">
+        <div class="logo">
+            <img th:src="@{/images/lol-icon.png}" height="35" alt="League Of Legends Logo">
+        </div>
+    </div>
+     
+    <div class="basic-header-2">
+        <div class="logo-2">
+            <p class="logo-2-text">LOL Stat Track</p>
+        </div>
+    </div>
+
+    <nav class="nav" >
+    <div class="nav-wrapper" >
+        <ul id="nav-mobile" >
+            <li>
+                <div class="search right" >
+                    <form th:action="@{/summ}" method="get">
+                        <div class="row">
+                            <div class="input-field col s10">
+                                <input type="text" id="name" name="name" placeholder="Search summoner" required class="searchTerm"></div>
+                        <div class="input-field ">
+                            <div class="col s1">
+                                <button class="searchButton" id="searchButton" >
+                                <i class="material-icons" >search</i>
+                            </div>
+                        </button></div>
+                      </form>
+                </div>
+             </li>
+        
+          <li><a href="./" class="nav-link">Home</a></li>
+              <li>
+                <div class="search right" >
+                    <form th:action="@{/champ}" method="get">
+                        <div class="row">
+                            <div class="input-field col s10">
+                                <input type="text" id="name" name="name" placeholder="Search Champion" required label="input-field" class="searchTerm"></div>
+                        <div class="input-field ">
+                            <div class="col s1">
+                                <button class="searchButton" id="searchButton" >
+                                <i class="material-icons" >search</i>
+                            </div>
+                        </button></div>
+                      </form>
+                </div>
+             </li>
+          
+
+        </ul>
+      </div>
+  </nav>
+  
+  <div class = "content">
+    <img id = "backgroundimage" th:src="@{/images/background.jpg}">
+  </div>
     <!--Champion table-->
-    <h4>Champions</h4>
     <table class="container">
         <tr>
-            <th>Champion name:</th>
+            <th ><img th:src="@{/images/champion/{image}(image=${image})}" ></th>
+        </tr>
+        <tr>
+            <th class="head">Champion name:</th>
             <td th:text="${names}"></td>
         </tr>
         <tr>
             <th th:text="${titles}"></th>
         </tr>
         <tr>
-            <td th:text="${blurbs}"></td>
+            <td colspan="2" th:text="${blurbs}"></td>
+        </tr>
+    </table>
+
+    <table class="container">
+        <tr>
+            <th class="head">Information:</th>
         </tr>
         <tr>
-            <td>Information:</td>
             <td>
                 <ul>
                     <li>Attack:</li>
@@ -50,5 +114,15 @@
                 </td>
             </td>
         </tr>
+        <tr>
+            <td>Legacy Class: </td>
+            <td>
+                <ul>
+                    <li th:text="${tag}"></li>
+                    <li th:text="${tag1}"></li>
+                </ul>
+            </td>
+        </tr>
     </table>
+    <br>
 </body>

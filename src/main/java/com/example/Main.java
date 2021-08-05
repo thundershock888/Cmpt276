@@ -27,6 +27,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -165,7 +167,10 @@ public class Main {
       championRead.setInfoMagic(node.get("data").get(name).get("info").get("magic").asInt());
       championRead.setInfoDifficulty(node.get("data").get(name).get("info").get("difficulty").asInt());
       championRead.setPartype(node.get("data").get(name).get("partype").asText());
-    
+      championRead.setImage(node.get("data").get(name).get("image").get("full").asText());
+      championRead.setTags(node.get("data").get(name).get("tags").get(0).asText());
+      championRead.setTags1(node.get("data").get(name).get("tags").get(1).asText());
+     
     }catch(JsonProcessingException e){
       e.printStackTrace();
     }
@@ -175,7 +180,7 @@ public class Main {
   String index() {
     return "main";
   }
-
+      
   @RequestMapping("/search")
   String search() {
     return "search";
@@ -200,6 +205,7 @@ public class Main {
     System.out.println("champ attack :"+ championRead.getInfoAttack()+" magic: "+ championRead.getInfoMagic()+" defense: " 
           +championRead.getInfoDefense()+" difficulty:"+ championRead.getInfoDifficulty());
     System.out.println("champ partype: "+championRead.getPartype());
+    
 
     model.put("names", championRead.getName());
     model.put("titles", championRead.getTitle());
@@ -209,8 +215,14 @@ public class Main {
     model.put("defenses", championRead.getInfoDefense());
     model.put("difficultys",championRead.getInfoDifficulty());
     model.put("partypes", championRead.getPartype());
+    model.put("image", championRead.getImage());
+    model.put("tag",championRead.getTags());
+    model.put("tag1",championRead.getTags1());
+
     return "champion";
+    
   }
+
   @GetMapping("/summ")
   public String searching (Map<String, Object> model, @RequestParam String name) {
     System.out.println(name);
@@ -300,7 +312,8 @@ public class Main {
     System.out.println("champ attack :"+ championRead.getInfoAttack()+" magic: "+ championRead.getInfoMagic()+" defense: " 
           +championRead.getInfoDefense()+" difficulty:"+ championRead.getInfoDifficulty());
     System.out.println("champ partype: "+championRead.getPartype());
-
+    System.out.println("champ image: "+championRead.getImage());
+    System.out.println("champ tag: "+championRead.getTags());
   }
 
 
