@@ -1,9 +1,9 @@
 package match;
 
 public class Matches {
-    private long gameId;
-    private String role;
-    private int season;
+    public long gameId;
+    public String role;
+    public int season;
     private String platformId;    
     private int champion;
     private int queue;

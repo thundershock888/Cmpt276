@@ -3,7 +3,11 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class MatchList {   
+public class MatchList {
+    public ArrayList<Matches> getMatches() {
+        return matches;
+    }
+
     ArrayList<Matches> matches = new ArrayList<Matches>();
     private int startIndex;
     private int endIndex;

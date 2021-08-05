@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
+
+
+</head>
+
+<body>
+<script src="api.js"></script>
+
+
+<div class="basic-header-1">
+    <div class="logo">
+        <img th:src="@{/images/lol-icon.png}" height="35" alt="League Of Legends Logo">
+    </div>
+</div>
+
+<div class="basic-header-2">
+    <div class="logo-2">
+        <p class="logo-2-text">LOL Stat Track</p>
+    </div>
+</div>
+
+<nav class="nav" >
+    <div class="nav-wrapper" >
+        <ul id="nav-mobile">
+            <li>
+                <form th:action="@{/pie}" method="get">
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <input type="text" id="name" name="name" placeholder="Search summoner" required></div>
+                        <div class="input-field ">
+                            <div class="col s1">
+                                <button class="searchButton" id="searchButton">
+                                    <i class="material-icons">search</i>
+                            </div>
+                            </button>
+                        </div>
+                </form>
+            </li>
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
+            <li class="logged-out" style = "display:none">
+                <a href="#" class="modal-trigger" data-target="modal-login">Login</a></li>
+            <li class="logged-out" style = "display:none">
+                <a href="#" class="modal-trigger" data-target="modal-signup">Create Account</a></li>
+            <li class="logged-in" style = "display:none">
+                <a href="#" class="modal-trigger" data-target="modal-account">Account</a></li>
+            <li class="logged-in" style = "display:none">
+                <a href="#" class="modal-trigger" id="logout">Logout</a></li>
+
+
+
+        </ul>
+    </div>
+</nav>
+
+<div class = "content">
+    <img id = "backgroundimage" th:src="@{/images/background.jpg}">
+
+
+    <h3 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h3>
+    <br>
+
+    <div>
+        <table class="container">
+            <thead>
+            <tr>
+                <th class="head">Summoner name: </th>
+                <td th:text="${names}"></td>
+            </tr>
+            <tr>
+                <th> Summoner information: </th>
+            </tr></thead>
+            <tr>
+                <th>Level</th>
+                <td th:text="${levels}"></td>
+            </tr>
+            <tr>
+                <th>Player rank</th>
+                <td>Tier: </td>
+                <td th:text="${tiers}"></td>
+                <td>Rank: </td>
+                <td th:text="${ranks}"></td>
+                <td>LP: </td>
+                <td th:text="${lps}"></td>
+            </tr>
+            <tr>
+                <td>Wins</td>
+                <td th:text="${wins}"></td>
+            </tr>
+            <tr>
+                <td>Losses</td>
+                <td th:text="${losses}"></td>
+            </tr>
+            <tr>
+                <td>Winstreak?</td>
+                <td th:text="${winstreak}"></td>
+            </tr>
+            <tr>
+                <td>New player?</td>
+                <td th:text="${news}"></td>
+            </tr>
+            <tr>
+                <td>Veteran player?</td>
+                <td th:text="${veterans}"></td>
+            </tr>
+            <tr>
+                <td>Inactive player?</td>
+                <td th:text="${inactives}"></td>
+            </tr>
+
+        </table>
+        <table>
+            <thead>
+            <tr>
+                <th> GameId </th>
+                <th> Lane </th>
+                <th> ChampionName </th>
+                <th> matchType </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${listOfMatchData.empty}">
+                <td colspan="2"> No Books Available </td>
+            </tr>
+            <tr th:each="userMatchData : ${listOfMatchData}">
+
+                <td><a th:href="@{/pineapples?matchId={id}(id = ${userMatchData.gameId})}"><span th:text="${userMatchData.gameId}" > GameId </span></a></td>
+
+                <td><span th:text="${userMatchData.lane}"> Lane </span></td>
+                <td><span th:text="${userMatchData.championName}"> Lane </span></td>
+                <td><span th:text="${userMatchData.matchType}"> MatchType</span></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+</body>
+</html>

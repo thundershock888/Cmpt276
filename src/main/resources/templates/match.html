@@ -34,7 +34,7 @@
   <div class="nav-wrapper" >
     <ul id="nav-mobile">
       <li>
-        <form th:action="@{/summ}" method="get">
+        <form th:action="@{/pie}" method="get">
           <div class="row">
             <div class="input-field col s10">
               <input type="text" id="name" name="name" placeholder="Search summoner" required></div>
@@ -66,9 +66,103 @@
 
 <div class = "content">
   <img id = "backgroundimage" th:src="@{/images/background.jpg}">
+
+
+  <h3 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h3>
   <br>
 
+  <div>
+    <table class="container">
+      <thead>
+      <tr>
+        <th class="head">Summoner name: </th>
+        <td th:text="${names}"></td>
+      </tr>
+      <tr>
+        <th> Summoner information: </th>
+      </tr></thead>
+      <tr>
+        <th>Level</th>
+        <td th:text="${levels}"></td>
+      </tr>
+      <tr>
+        <th>Player rank</th>
+        <td>Tier: </td>
+        <td th:text="${tiers}"></td>
+        <td>Rank: </td>
+        <td th:text="${ranks}"></td>
+        <td>LP: </td>
+        <td th:text="${lps}"></td>
+      </tr>
+      <tr>
+        <td>Wins</td>
+        <td th:text="${wins}"></td>
+      </tr>
+      <tr>
+        <td>Losses</td>
+        <td th:text="${losses}"></td>
+      </tr>
+      <tr>
+        <td>Winstreak?</td>
+        <td th:text="${winstreak}"></td>
+      </tr>
+      <tr>
+        <td>New player?</td>
+        <td th:text="${news}"></td>
+      </tr>
+      <tr>
+        <td>Veteran player?</td>
+        <td th:text="${veterans}"></td>
+      </tr>
+      <tr>
+        <td>Inactive player?</td>
+        <td th:text="${inactives}"></td>
+      </tr>
+      <tr>
+        <td>Last games: Click to View More Details</td>
+      </tr>
+      <tr>
+        <td>Game # 1</td>
+        <td>
+          <ul>
+            <li>platformId </li>
+            <li>gameId</li>
+            <li>champion</li>
+            <li>queue</li>
+            <li>season</li>
+            <li>timestamp</li>
+            <li>role</li>
+            <li>lane</li>
+          </ul>
+        </td>
 
+      </tr>
+    </table>
+    <table>
+      <thead>
+      <tr>
+        <th> maxCs </th>
+        <th> csPerMin </th>
+        <th> totalGold </th>
+        <th> highestLevel </th>
+      </tr>
+      </thead>
+      <tbody>
+
+
+
+      <tr>
+        <td><span th:text="${matchFromId.maxCs}"> GameId </span></td>
+        <td><span th:text="${matchFromId.csPerMin}"> Lane </span></td>
+        <td><span th:text="${matchFromId.totalGold}"> Lane </span></td>
+        <td><span th:text="${matchFromId.highestLevel}"> MatchType</span></td>
+      </tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
 
 </body>
 </html>
