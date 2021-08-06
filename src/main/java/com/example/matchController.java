@@ -40,7 +40,7 @@ public class matchController {
         float loss = ranked.getLosses();
         float winR = win/(win+loss)*100;
         System.out.println("RATIO "+ winR);
-
+        String png = ".png";
         model.addAttribute("names", summoner.getName());
         model.addAttribute("levels", summoner.getSummonerLevel());
         model.addAttribute("tiers", ranked.getTier());
@@ -54,6 +54,7 @@ public class matchController {
         model.addAttribute("inactives", ranked.isInactive());
         model.addAttribute("pfps", summoner.getProfileIconId());
         model.addAttribute("winratio", winR);
+        model.addAttribute("png", png);
         return "result";
     }
     @GetMapping("/pineapples")

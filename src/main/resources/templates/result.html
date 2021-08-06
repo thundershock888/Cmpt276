@@ -74,9 +74,15 @@
     <div>
         <table class="container">
             <thead>
+                <tr>
+                    <td>
+                        <img th:src="@{https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon{pfps}(pfps=${pfps})}+${png}">
+                    </td>
+                </tr>
             <tr>
                 <th class="head">Summoner name: </th>
                 <td th:text="${names}"></td>
+
             </tr>
             <tr>
                 <th> Summoner information: </th>

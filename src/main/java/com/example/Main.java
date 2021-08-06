@@ -80,6 +80,7 @@ public class Main {
   }
   @GetMapping("/champ")
   public String ChampDisp(Map<String,Object> model, @RequestParam String name){
+    
     System.out.println(name);
     if (name == null){
       return "error";

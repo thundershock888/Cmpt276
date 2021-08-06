@@ -151,7 +151,7 @@
         <thead>
           <tr>
             <!--to display pfp-->
-            <th id="pfpPLACE"><input style="display: none;" name="pf" th:value=${pfps}></th>
+            <th id="pfpPLACE"><input style="display: none;" name="pf" ><img th:src="@{https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon{pfps}(pfps=${pfps})}+${png}"></th>
           </tr>
         <tr>
           <th class="head">Summoner name: </th>
