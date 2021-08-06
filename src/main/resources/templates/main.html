@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home Page</title>
     <link rel="stylesheet" href="/stylesheets/main.css">
-    
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	-->
-    
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
@@ -147,7 +144,6 @@
       <table class="container" >
         <thead>
           <tr>
-            <!--to display pfp  id="pfpPLACE"><input style="display: none;" name="pf" >-->
             <th><img th:src="@{https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon{pfps}(pfps=${pfps})}+${png}"></th>
           </tr>
         <tr>
@@ -162,7 +158,7 @@
             <td th:text="${levels}"></td>
           </tr>
           <tr>
-            <th>Player rank</th>
+            <th>Player rank for <span th:text="${queue}"></span></th>
             <td>Tier: </td>
             <td th:text="${tiers}"></td>
             <td>Rank: </td>
