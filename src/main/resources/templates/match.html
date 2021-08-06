@@ -85,7 +85,8 @@
         <th> Damage Taken</th>
         <th> Objective Score</th>
         <th> Gold Earned</th>
-        <th> Level</th>
+        <th> Items</th>
+
 
       </tr>
       </thead>
@@ -104,8 +105,14 @@
         <td><span th:text="${stat.objectivePlayerScore}"> Objective Score</span></td>
         <td><span th:text="${stat.goldEarned}"> Gold Earned</span></td>
         <td><span th:text="${stat.champLevel}"> Level</span></td>
-
+        <td><img th:src="@{/images/item/{image}.png(image=${stat.item0})}" > </td>
+        <td><img th:src="@{/images/item/{image}.png(image=${stat.item1})}" > </td>
+        <td><img th:src="@{/images/item/{image}.png(image=${stat.item2})}" > </td>
+        <td><img th:src="@{/images/item/{image}.png(image=${stat.item3})}" > </td>
+        <td><img th:src="@{/images/item/{image}.png(image=${stat.item4})}" > </td>
+        <td><img th:src="@{/images/item/{image}.png(image=${stat.item5})}" > </td>
       </tr>
+
 
 
       </tbody>

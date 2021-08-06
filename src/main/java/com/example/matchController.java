@@ -77,6 +77,7 @@ public class matchController {
             stats.get(i).setUserName(players.get(i).getSummonerName());
             stats.get(i).setKDA(Integer.toString(stat.getKills())+ "-" + Integer.toString(stat.getDeaths())+ "-" + Integer.toString(stat.getAssists()));
             stat.setObjectivePlayerScore(stat.getTurretKills()+stat.getInhibitorKills()+stat.getObjectivePlayerScore());
+            System.out.println("printing numbers" + stat.getItem5());
         }
 
 
