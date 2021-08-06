@@ -82,7 +82,6 @@
             <tr>
                 <th class="head">Summoner name: </th>
                 <td th:text="${names}"></td>
-
             </tr>
             <tr>
                 <th> Summoner information: </th>
@@ -92,7 +91,7 @@
                 <td th:text="${levels}"></td>
             </tr>
             <tr>
-                <th>Player rank</th>
+                <th>Player rank for <span th:text="${queue}"></span></th>
                 <td>Tier: </td>
                 <td th:text="${tiers}"></td>
                 <td>Rank: </td>
@@ -113,6 +112,10 @@
                 <td th:text="${winstreak}"></td>
             </tr>
             <tr>
+                <td>Win Ratio</td>
+                <td> <span th:text="${winratio}"></span><span>%</span></td>
+              </tr>
+            <tr>
                 <td>New player?</td>
                 <td th:text="${news}"></td>
             </tr>
@@ -126,14 +129,18 @@
             </tr>
 
         </table>
-        <table>
+        <br>
+        <table class="container">
             <thead>
+                <tr >
+                    <td colspan="5" class="center-align"><h5 style="font-weight: bold;">Last Games</h5></td>
+                </tr>
             <tr>
-                <th> GameId </th>
+                <th> Game Id </th>
                 <th> Lane </th>
-                <th> ChampionName </th>
-                <th> ChampionImage</th>
-                <th> matchType </th>
+                <th> Champion Name </th>
+                <th> Champion Image</th>
+                <th> Match Type </th>
 
             </tr>
             </thead>
