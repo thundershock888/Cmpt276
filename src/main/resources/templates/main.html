@@ -249,22 +249,46 @@
       </ul>
   </div>
   
-  
-
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
     <script>
-    
+     // Your web app's Firebase configuration/*
+ var firebaseConfig = {
+  apiKey: "AIzaSyAyZFD38P5DS_6_RUSLGjAbbAjce3neO90",
+  authDomain: "login-9a731.firebaseapp.com",
+  projectId: "login-9a731",
+  storageBucket: "login-9a731.appspot.com",
+  messagingSenderId: "25737172393",
+  appId: "1:25737172393:web:4166bfdeff7ebe47fce0b8"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+//make auth & firestore reference;
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+//firestore settings
+db.settings({merge: true});
+
+function checkSearch() {
+  if(window.location.href.indexOf("pie?name") > -1) 
+  {
+var x = document.getElementById("searching");
+if (x.style.display === "none") {
+x.style.display = 'block';
+}else {
+x.style.display ='none';
+}
+  }
+
+}
            
 
 </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <!--
-    <script src="formfire.js"></script>
-    <script src="index.js"></script>-->
-    <!---->
     <script th:src="@{/js/formfire.js}"></script>
     <script th:src="@{/js/index.js}"></script>
     <script th:src="@{/js/riotapi.js}"></script>

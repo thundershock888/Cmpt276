@@ -1,34 +1,4 @@
- // Your web app's Firebase configuration/*
- var firebaseConfig = {
-  apiKey: "AIzaSyAyZFD38P5DS_6_RUSLGjAbbAjce3neO90",
-  authDomain: "login-9a731.firebaseapp.com",
-  projectId: "login-9a731",
-  storageBucket: "login-9a731.appspot.com",
-  messagingSenderId: "25737172393",
-  appId: "1:25737172393:web:4166bfdeff7ebe47fce0b8"
-};
 
-firebase.initializeApp(firebaseConfig);
-
-//make auth & firestore reference;
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-//firestore settings
-db.settings({merge: true});
-
-function checkSearch() {
-  if(window.location.href.indexOf("pie?name") > -1) 
-  {
-var x = document.getElementById("searching");
-if (x.style.display === "none") {
-x.style.display = 'block';
-}else {
-x.style.display ='none';
-}
-  }
-
-}
 // adapted from https://www.youtube.com/c/TheNetNinja/videos
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
