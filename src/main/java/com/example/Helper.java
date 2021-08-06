@@ -45,21 +45,7 @@ public class Helper {
         }
         return listOfMatchIds;
     }
-    public static List<UserMatchData> getMatchResponseDataFromUserName(String username){//returns list of UserMatchData objects, given a username. (DO NOT CALL THIS TOO OFTEN, RATE LIMIT WILL BE REACHED)
-        List<Long> matchIds = new ArrayList<>();
-        List<UserMatchData> userMatchData = new ArrayList<>();
-        matchIds = getMatchIdsFromUserName(username); // @todo stream
-        int index = 0;
-        for (Long l:matchIds
-        ) {
-            if(index < 2) {
-                UserMatchData umd = new UserMatchData(l.toString());
-                userMatchData.add(umd);
-            }
-            index++;
-        }
-        return userMatchData;
-    }
+
     public static void getSummoner(Summoner summoner, String name){// using api.java we are able to parse the website for basic information on each summoner
         if(name.contains(" ")){
             String replace = name.replace(" ", "%20");

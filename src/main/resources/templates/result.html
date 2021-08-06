@@ -126,7 +126,9 @@
                 <th> GameId </th>
                 <th> Lane </th>
                 <th> ChampionName </th>
+                <th> ChampionImage</th>
                 <th> matchType </th>
+
             </tr>
             </thead>
             <tbody>
@@ -138,7 +140,9 @@
                 <td><a th:href="@{/pineapples?matchId={id}(id = ${userMatchData.gameId})}"><span th:text="${userMatchData.gameId}" > GameId </span></a></td>
 
                 <td><span th:text="${userMatchData.lane}"> Lane </span></td>
-                <td><span th:text="${userMatchData.championName}"> Lane </span></td>
+                <td><a th:href="@{/champ?name={champion}(champion = ${userMatchData.championName})}"><span th:text="${userMatchData.championName}"> Lane </span></td>
+                <td ><img th:src="@{/images/champion/{image}.png(image=${userMatchData.championFileName})}" ></td>
+
                 <td><span th:text="${userMatchData.matchType}"> MatchType</span></td>
 
             </tr>
