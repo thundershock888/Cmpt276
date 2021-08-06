@@ -72,43 +72,42 @@
   <br>
 
   <div>
-    <table>
-      <thead>
-      <tr>
-        <th> Username </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:if="${players.empty}">
-        <td colspan="2"> No Match Found </td>
-      </tr>
-      <tr th:each="player: ${players}">
-        <td><span th:text="${player.summonerName}"> ParticipantId</span></td>
-      </tr>
-      </tbody>
-    </table>
+
 
     <table>
       <thead>
       <tr>
         <th> ParticipantID </th>
-        <th> maxCs </th>
-        <th> csPerMin </th>
-        <th> totalGold </th>
-        <th> highestLevel </th>
+        <th> Won? </th>
+        <th> KDA </th>
+        <th> Largest MultiKill </th>
+        <th> Damage</th>
+        <th> Damage Taken</th>
+        <th> Objective Score</th>
+        <th> Gold Earned</th>
+        <th> Level</th>
+
       </tr>
       </thead>
       <tbody>
+
       <tr th:if="${stats.empty}">
         <td colspan="2"> No Match Found </td>
       </tr>
       <tr th:each="stat : ${stats}">
-        <td><span th:text="${stat.totalUnitsHealed}"> ParticipantId</span></td>
-        <td><span th:text="${stat.totalUnitsHealed}"> GameId </span></td>
-        <td><span th:text="${stat.totalUnitsHealed}"> Lane </span></td>
-        <td><span th:text="${stat.totalUnitsHealed}"> Lane </span></td>
-        <td><span th:text="${stat.totalUnitsHealed}"> MatchType</span></td>
+        <td><span th:text="${stat.UserName}"> GameId </span></td>
+        <td><span th:text="${stat.win}"> Won? </span></td>
+        <td><span th:text="${stat.KDA}"> KDA </span></td>
+        <td><span th:text="${stat.largestKillingSpree}"> Largest MultiKill </span></td>
+        <td><span th:text="${stat.totalDamageDealtToChampions}"> Damage</span></td>
+        <td><span th:text="${stat.totalDamageTaken}"> Damage Taken</span></td>
+        <td><span th:text="${stat.objectivePlayerScore}"> Objective Score</span></td>
+        <td><span th:text="${stat.goldEarned}"> Gold Earned</span></td>
+        <td><span th:text="${stat.champLevel}"> Level</span></td>
+
       </tr>
+
+
       </tbody>
     </table>
 
