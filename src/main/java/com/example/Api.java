@@ -123,9 +123,13 @@ public class Api {
         //String puuid = getSummonderPuuidByUserName(id);
         return fetchDataFromApiAsString("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/"+ id + "?api_key="+ key);
     }
-    public static String getMatchDataByMatchId(String matchID){//takes the numerical match id, (only works in NA regoin for now), and
+    public static String getMatchTimelineByMatchId(String matchID){//takes the numerical match id, (only works in NA regoin for now), and
         //returns a valid json string that contains the match data. very large. wayne is currently working on a way to parse this into more usable and useful data.
         String link = "https://na1.api.riotgames.com/lol/match/v4/timelines/by-match/" + matchID+ "?api_key=" + key;
+        return fetchDataFromApiAsString(link);
+    }
+    public static String getMatchDataByMatchId(String matchID){
+        String link = "https://na1.api.riotgames.com/lol/match/v4/matches/" + matchID+ "?api_key=" + key;
         return fetchDataFromApiAsString(link);
     }
 

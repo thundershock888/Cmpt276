@@ -1,9 +1,16 @@
 package com.example;
 
 import com.example.Helper;
+import com.google.gson.Gson;
 import match.MatchList;
 import match.Matches;
 import match.UserMatchData;
+import matchStatistics.ParticipantsItem;
+import matchStatistics.Response;
+import matchStatistics.Stats;
+import matchStatistics.ParticipantIdentitiesItem;
+import matchStatistics.Player;
+import model.MatchResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +22,7 @@ import java.util.List;
 
 @Controller
 public class matchController {
+    final static Gson gson = new Gson();
 
     @GetMapping("/pie")
     public String showAllMatches(Model model, @RequestParam String name){
@@ -50,8 +58,26 @@ public class matchController {
     }
     @GetMapping("/pineapples")
     public String showMatch(Model model, @RequestParam String matchId){
-        UserMatchData userMatchData = new UserMatchData(matchId);
-        model.addAttribute("matchFromId",userMatchData);
+        String matchString = Api.getMatchDataByMatchId(matchId);
+        Response response = gson.fromJson(matchString, Response.class);
+        List<ParticipantsItem> participantsItems = response.getParticipants();
+        List<ParticipantIdentitiesItem> participantIdentities = response.getParticipantIdentities();
+        List<Player> players = new ArrayList<>();
+
+        List<Stats> stats = new ArrayList<>();
+        for (ParticipantIdentitiesItem p: participantIdentities){
+            players.add((p.getPlayer()));
+        }
+        for (ParticipantsItem p: participantsItems
+             ) {
+            stats.add(p.getStats());
+        }
+
+
+
+        model.addAttribute("stats", stats);
+        model.addAttribute("players", players);
+
         return "match";
     }
 
