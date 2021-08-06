@@ -10,6 +10,7 @@ public class Matches {
     private String lane;
     private long timestamp;
     private String championName;
+    private String championFileName;
     private String matchType;
 
 
@@ -66,6 +67,10 @@ public class Matches {
     }
     public void setChampionName(String championName) {
         this.championName = championName;
+        this.championFileName = this.championName.replace(" ", "");
+    }
+    public String getChampionFileName(){
+        return championFileName;
     }
     public String getMatchType() {
         return matchType;

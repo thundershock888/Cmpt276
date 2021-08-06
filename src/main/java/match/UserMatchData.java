@@ -9,7 +9,7 @@ import model.MatchResponse;
 
 public class UserMatchData {
     final static Gson gson = new Gson();
-    //int id;
+    int id;
     int totalTime;
     int numFrames;
     float mins;
@@ -39,16 +39,17 @@ public class UserMatchData {
     }
 
     MatchResponse response;
-    public UserMatchData(String matchId){// constructor for matchdata object, takes in a interger(1-10) as participant ID, and a match id
+    public UserMatchData(String matchId, int id){// constructor for matchdata object, takes in a interger(1-10) as participant ID, and a match id
         String matchString = Api.getMatchDataByMatchId(matchId);
         response = gson.fromJson(matchString, MatchResponse.class);
         numFrames = response.getFrames().size();
         int timeinmillis = numFrames*response.getFrameInterval();
+        this.id = id;
         mins = timeinmillis/60000;
-        maxCs = getCs(1);
-        csPerMin = getCsPerMin(1);
-        totalGold = getTotalGold(1);
-        highestLevel = getLevel(1);
+        maxCs = getCs(id);
+        csPerMin = getCsPerMin(id);
+        totalGold = getTotalGold(id);
+        highestLevel = getLevel(id);
     }
     //NOTE: all the following 5 methods take in the participant id(1-10) and return the corresponding value
     public int getCs(int id){//returns cs score for a participant, id 1-10
@@ -59,6 +60,11 @@ public class UserMatchData {
         int maxCs = getCs(id);
         return maxCs/mins;
     }
+
+    public int getId() {
+        return id;
+    }
+
     public int getTeamScore(int id){
         return getJsonMemeberFromParticipantId(id, numFrames-1).getTeamScore();
     }

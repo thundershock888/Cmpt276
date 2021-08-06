@@ -136,16 +136,7 @@ public class Main {
     return "champion";
     
   }
-  //when you click on a match
-  @GetMapping("/match")
-  public String match (Map<String, Object> model, @RequestParam String matchId){
-    UserMatchData match = new UserMatchData(matchId);
-    model.put("cs", match.getCs(1));
-    model.put("final Level", match.getLevel(1));
-    model.put("total gold", match.getTotalGold(1));
-    model.put("cs per minute", match.getCsPerMin(1));
-    return "main";
-  }
+
 
 
   @GetMapping("/somethin")
@@ -211,11 +202,7 @@ public class Main {
   
 	
   public static void main(String[] args) throws Exception {
-    List<UserMatchData> listOfMatches = Helper.getMatchResponseDataFromUserName("thundershock888");
-    for (int i = 0; i < listOfMatches.size(); i++) {
-      System.out.println("printing cs for game # " + i);
-      System.out.println(listOfMatches.get(i).getMaxCs());
-    }
+
 
     SpringApplication.run(Main.class, args);
     String pid = "Delicious";
