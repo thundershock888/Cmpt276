@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
-    <script data-mai n="api" src="require.js" defer></script>
 
 </head>
 
@@ -23,7 +22,6 @@
             <img th:src="@{/images/lol-icon.png}" height="35" alt="League Of Legends Logo">
         </div>
     </div>
-     
     <div class="basic-header-2">
         <div class="logo-2">
             <p class="logo-2-text">LOL Stat Track</p>
@@ -75,9 +73,6 @@
                 </div>
              </li>
              <li><a href="./Champions/champions.html" class="modal-trigger" data-target="modal-champions">Champions</a></li>
-
-          
-
         </ul>
       </div>
   </nav>
@@ -116,7 +111,7 @@
     <div id="modal-about-us" class="modal">
         <div class="modal-content center-align">
         <h4>About Us</h4><br/>
-        <div>This is a simple project developed to display game statistics for the Game Leaague of Legend</div>
+        <div>This is a simple project developed to display game statistics for the Game League of Legend</div>
         </div>
     </div>
         <!-- login -->
@@ -147,11 +142,13 @@
     <!--Search result-->
     <br>
     <div id="searching" style="display: none">
+      <h3 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h3>
+      <br>
       <table class="container" >
         <thead>
           <tr>
-            <!--to display pfp-->
-            <th id="pfpPLACE"><input style="display: none;" name="pf" ><img th:src="@{https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon{pfps}(pfps=${pfps})}+${png}"></th>
+            <!--to display pfp  id="pfpPLACE"><input style="display: none;" name="pf" >-->
+            <th><img th:src="@{https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon{pfps}(pfps=${pfps})}+${png}"></th>
           </tr>
         <tr>
           <th class="head">Summoner name: </th>
@@ -209,170 +206,37 @@
             </tr>
           </table>
           <table class="logged-in container" style = "display:none">
-        <tr>
-          <th colspan="2">Last games </th>
-        </tr>
-        <tr>
-          <td>Game # 1</td>
-          <td>
-            <ul>
-              <li>Platform </li>
-              <li>Game ID</li>
-              <li>Champion</li>
-              <li>Queue</li>
-              <li>Season</li>
-              <li>Timestamp</li>
-              <li>Role</li>
-              <li>Lane</li>
-            </ul>
-            <td>
-              <ul>
-                <li th:text="${platformId0}"></li> 
-                <li th:text="${gameId0}"></li>
-                <li ><a th:href="|/champ?name=${champion0}|" th:text="${champion0}" ></a></li>
-                <li th:text="${queue0}"></li>
-                <li th:text="${season0}"></li>
-                <li th:text="${timestamp0}"></li>
-                <li th:text="${role0}"></li>
-                <li th:text="${lane0}"></li>
-              </ul>
-            </td>
-          </td>
-          <td></td>
-          <td>Game # 2</td>
-          <td>
-            <ul>
-              <li>Platform </li>
-              <li>Game ID</li>
-              <li>Champion</li>
-              <li>Queue</li>
-              <li>Season</li>
-              <li>Timestamp</li>
-              <li>Role</li>
-              <li>Lane</li>
-            </ul>
-            <td>
-              <ul>
-                <li th:text="${platformId1}"></li> 
-                <li th:text="${gameId1}"></li>
-                <li ><a th:href="|/champ?name=${champion1}|" th:text="${champion1}" ></a></li>
-                <li th:text="${queue1}"></li>
-                <li th:text="${season1}"></li>
-                <li th:text="${timestamp1}"></li>
-                <li th:text="${role1}"></li>
-                <li th:text="${lane1}"></li>
-              </ul>
-            </td>
-          </td>
-          <tr>
-          <td>Game # 3</td>
-          <td>
-            <ul>
-              <li>Platform </li>
-              <li>Game ID</li>
-              <li>Champion</li>
-              <li>Queue</li>
-              <li>Season</li>
-              <li>Timestamp</li>
-              <li>Role</li>
-              <li>Lane</li>
-            </ul>
-            <td>
-              <ul>
-                <li th:text="${platformId2}"></li> 
-                <li th:text="${gameId2}"></li>
-                <li ><a th:href="|/champ?name=${champion2}|" th:text="${champion2}" ></a></li>
-                <li th:text="${queue2}"></li>
-                <li th:text="${season2}"></li>
-                <li th:text="${timestamp2}"></li>
-                <li th:text="${role2}"></li>
-                <li th:text="${lane2}"></li>
-              </ul>
-            </td>
-          </td>
-          <td></td>
-          <td>Game # 4</td>
-          <td>
-            <ul>
-              <li>Platform </li>
-              <li>Game ID</li>
-              <li>Champion</li>
-              <li>Queue</li>
-              <li>Season</li>
-              <li>Timestamp</li>
-              <li>Role</li>
-              <li>Lane</li>
-            </ul>
-            <td>
-              <ul>
-                <li th:text="${platformId3}"></li> 
-                <li th:text="${gameId3}"></li>
-                <li ><a th:href="|/champ?name=${champion3}|" th:text="${champion3}" ></a></li>
-                <li th:text="${queue3}"></li>
-                <li th:text="${season3}"></li>
-                <li th:text="${timestamp3}"></li>
-                <li th:text="${role3}"></li>
-                <li th:text="${lane3}"></li>
-              </ul>
-            </td>
-        </tr>
-          <tr>
-          <td>Game # 5</td>
-          <td>
-            <ul>
-              <li>Platform </li>
-              <li>Game ID</li>
-              <li>Champion</li>
-              <li>Queue</li>
-              <li>Season</li>
-              <li>Timestamp</li>
-              <li>Role</li>
-              <li>Lane</li>
-            </ul>
-            <td>
-              <ul>
-                <li th:text="${platformId4}"></li> 
-                <li th:text="${gameId4}"></li>
-                <li ><a th:href="|/champ?name=${champion4}|" th:text="${champion4}" ></a></li>
-                <li th:text="${queue4}"></li>
-                <li th:text="${season4}"></li>
-                <li th:text="${timestamp4}"></li>
-                <li th:text="${role4}"></li>
-                <li th:text="${lane4}"></li>
-              </ul>
-            </td>
-          </td>
-          <td></td>
-          <td>Game # 6</td>
-          <td>
-            <ul>
-              <li>Platform </li>
-              <li>Game ID</li>
-              <li>Champion</li>
-              <li>Queue</li>
-              <li>Season</li>
-              <li>Timestamp</li>
-              <li>Role</li>
-              <li>Lane</li>
-            </ul>
-            <td>
-              <ul>
-                <li th:text="${platformId5}"></li> 
-                <li th:text="${gameId5}"></li>
-                <li ><a th:href="|/champ?name=${champion5}|" th:text="${champion5}" ></a></li>
-                <li th:text="${queue5}"></li>
-                <li th:text="${season5}"></li>
-                <li th:text="${timestamp5}"></li>
-                <li th:text="${role5}"></li>
-                <li th:text="${lane5}"></li>
-              </ul>
-            </td>
-          </td>
-        </tr>
-      </table>
+
+      <thead>
+          <tr >
+              <td colspan="5" class="center-align"><h5 style="font-weight: bold;">Last Games</h5></td>
+          </tr>
+      <tr>
+          <th> Game Id </th>
+          <th> Lane </th>
+          <th> Champion Name </th>
+          <th> Champion Image</th>
+          <th> Match Type </th>
+      </tr>
+      </thead>
+      <tbody>
+     
+      <tr th:each="userMatchData : ${listOfMatchData}">
+
+          <td><a th:href="@{/pineapples?matchId={id}(id = ${userMatchData.gameId})}"><span th:text="${userMatchData.gameId}" > GameId </span></a></td>
+
+          <td><span th:text="${userMatchData.lane}"> Lane </span></td>
+          <td><a th:href="@{/champ?name={champion}(champion = ${userMatchData.championName})}"><span th:text="${userMatchData.championName}"> Lane </span></td>
+          <td ><img th:src="@{/images/champion/{image}.png(image=${userMatchData.championFileName})}" ></td>
+
+          <td><span th:text="${userMatchData.matchType}"> MatchType</span></td>
+
+      </tr>
+      </tbody>
+  </table>
     </div>
     </div>
-    
+
     <!-- infos -->
     <div class="container" style="margin-top: 40px;">
       <ul class="collapsible z-depth-0 infos" style="border: none;">
@@ -392,47 +256,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
     <script>
     
-            // Your web app's Firebase configuration/*
-        var firebaseConfig = {
-            apiKey: "AIzaSyAyZFD38P5DS_6_RUSLGjAbbAjce3neO90",
-            authDomain: "login-9a731.firebaseapp.com",
-            projectId: "login-9a731",
-            storageBucket: "login-9a731.appspot.com",
-            messagingSenderId: "25737172393",
-            appId: "1:25737172393:web:4166bfdeff7ebe47fce0b8"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-  
-         //make auth & firestore reference;
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        //firestore settings
-        db.settings({merge: true});
-
-      function checkSearch() {
-            if(window.location.href.indexOf("summ?name") > -1) 
-            {
-      var x = document.getElementById("searching");
-      if (x.style.display === "none") {
-        x.style.display = 'block';
-        showPFP();
-        }else {
-          x.style.display ='none';
-        }
-            }
-        }
-
-        function showPFP() {
-          var x = document.getElementsByName("pf")[0].value;
-          var y = document.createElement("IMG");
-          var z = "https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon"+ x +".png";
-          y.setAttribute("src", z);
-          document.body.appendChild(y);
-          var list = document.getElementById("pfpPLACE");    // Get the <ul> element to insert a new node
-          list.insertBefore(y, list.childNodes[0]);
-}
+           
 
 </script>
 

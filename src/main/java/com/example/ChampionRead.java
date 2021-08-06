@@ -117,6 +117,7 @@ public class ChampionRead{
 	public static void getChampion(ChampionRead championRead, String name){
 		try{
 		  JsonNode node = (new ObjectMapper()).readTree(Api.getChampionData(name));
+		  
 		  //System.out.println("champion: "+ node);
 
 		  championRead.setId(node.get("data").get(name).get("id").asText());

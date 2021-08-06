@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Search Results</title>
+    <title>Results</title>
     <link rel="stylesheet" href="/stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,7 +14,7 @@
     
 </head>
 
-<body>
+<body>  
   
   <div class="basic-header-1">
     <div class="logo">
@@ -32,7 +32,7 @@
 <div class="nav-wrapper" >
     <ul id="nav-mobile">
         <li>
-              <form th:action="@{/pie}" method="get">
+              <form th:action="@{/summ}" method="get">
                 <div class="row">
                     <div class="input-field col s10">
                         <input type="text" id="name" name="name" placeholder="Search summoner" required></div>
@@ -64,84 +64,11 @@
 
 <div class = "content">
   <img id = "backgroundimage" th:src="@{/images/background.jpg}">
-
-  
-    <h3 class="container center-align" style="background: whitesmoke; width: 30%;" > Search Result </h3>
-    <br>
+<br>
+  <h6 th:text="${message}" class="container center-align" style="background: whitesmoke" >Exception message</h6>
+  <br>
+  <h5 class="container center-align" style="background: whitesmoke"> Invalid input, please try again</h5>
     
-      <div>
-      <table class="container">
-        <thead>
-        <tr>
-          <th><input style="display: none;" name="pf" th:value=${pfps}></th>
-          
-          <th class="head">Summoner name: </th>
-          <td th:text="${names}"></td>
-        </tr>
-        <tr>
-          <th> Summoner information: </th>
-        </tr></thead>
-          <tr>
-            <th>Level</th>  
-            <td th:text="${levels}"></td>
-          </tr>
-          <tr>
-            <th>Player rank</th>
-            <td>Tier: </td>
-            <td th:text="${tiers}"></td>
-            <td>Rank: </td>
-            <td th:text="${ranks}"></td>
-            <td>LP: </td>
-            <td th:text="${lps}"></td>
-          </tr>
-          <tr>
-            <td>Wins</td>
-            <td th:text="${wins}"></td>
-          </tr>
-          <tr>
-            <td>Losses</td>
-            <td th:text="${losses}"></td>
-          </tr>
-          <tr>
-            <td>Winstreak?</td>
-            <td th:text="${winstreak}"></td>
-          </tr>
-          <tr>
-            <td>New player?</td>
-            <td th:text="${news}"></td>
-          </tr>
-          <tr>
-            <td>Veteran player?</td>
-            <td th:text="${veterans}"></td>
-          </tr>
-          <tr>
-            <td>Inactive player?</td>
-            <td th:text="${inactives}"></td>
-          </tr>
-        <tr>
-          <td>Last games: Click to View More Details</td>
-        </tr>
-        <tr>
-          <td>Game # 1</td>
-          <td>
-            <ul>
-              <li>platformId </li>
-              <li>gameId</li>
-              <li>champion</li>
-              <li>queue</li>
-              <li>season</li>
-              <li>timestamp</li>
-              <li>role</li>
-              <li>lane</li>
-            </ul>
-          </td>
+  </body>
 
-        </tr>
-      </table>
-
-
-
-    </div>
-           
-</body>
 </html>

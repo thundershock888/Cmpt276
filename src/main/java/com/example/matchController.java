@@ -56,7 +56,10 @@ public class matchController {
         model.addAttribute("winratio", winR);
         model.addAttribute("png", png);
         model.addAttribute("queue", ranked.getQueuetype());
-        return "result";
+        if (summoner.getName() == null){
+            return "error";
+          }
+        return "main";
     }
     @GetMapping("/pineapples")
     public String showMatch(Model model, @RequestParam String matchId){

@@ -16,7 +16,7 @@ import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
    public static String key = System.getenv().get("RIOT_API_KEY");
-   /*public static String key;
+  /* public static String key;
     
 
      static {

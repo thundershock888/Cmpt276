@@ -68,7 +68,7 @@ const setupadminInfo = (data) => {
     });
     adminOnly.innerHTML = html
   } else {
-    adminOnly.innerHTML = '<h5 class="center-align container grey "> <br> Restricted <p> </p> <br></h5>';
+    adminOnly.innerHTML = '<p class="center-align container grey "> <br> Restricted <p> </p> <br></p>';
   }
 
 };

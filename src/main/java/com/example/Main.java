@@ -61,30 +61,17 @@ public class Main {
     return "main";
   }
 
-
-
-
-
   //Summoner Match retrival
-
-  
 
   @RequestMapping("/")
   String index() {
     return "main";
   }
       
-  @RequestMapping("/search")
-  String search() {
-    return "search";
-  }
   @GetMapping("/champ")
   public String ChampDisp(Map<String,Object> model, @RequestParam String name){
-    
     System.out.println(name);
-    if (name == null){
-      return "error";
-    }
+    
     name = name.substring(0,1).toUpperCase()+name.substring(1);
       
     ChampionRead championRead = new ChampionRead();
@@ -93,16 +80,7 @@ public class Main {
     Stats.getChampionStats(stats, name);
     Spells spells = new Spells();
     Spells.getChampSpell(spells, name);
-    System.out.println("champ id :"+ championRead.getId());
-    System.out.println("champ key:"+ championRead.getKey());
-    System.out.println("champ title :"+ championRead.getTitle());
-    System.out.println("Champ name :" + championRead.getName());
-    System.out.println("champ lore :"+ championRead.getLore());
-    System.out.println("champ attack :"+ championRead.getInfoAttack()+" magic: "+ championRead.getInfoMagic()+" defense: " 
-          +championRead.getInfoDefense()+" difficulty:"+ championRead.getInfoDifficulty());
-    System.out.println("champ partype: "+championRead.getPartype());
-    System.out.println( championRead.getPassiveImg());
-
+    
     model.put("names", championRead.getName());
     model.put("titles", championRead.getTitle());
     model.put("lores", championRead.getLore());
@@ -140,78 +118,15 @@ public class Main {
     model.put("spells3", spells.getName3());
     model.put("passives", championRead.getPassive());
     model.put("passimg", championRead.getPassiveImg());
-
+    if (championRead.getName() == null){
+      return "error";
+    }
     return "champion";
 
   }
-
-
-
-  @GetMapping("/somethin")
-  public String searching (Map<String, Object> model, @RequestParam String name) {
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd:mm", Locale.US);
-    GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("US/West"));
-    System.out.println(name);
-    if (name == null){
-      return "error";
-    }
-    Summoner summoner = new Summoner();
-    Helper.getSummoner(summoner, name);
-
-    Ranked ranked = new Ranked();
-    Helper.getRanked(ranked, summoner.getId());
-
-    MatchList matchList = new MatchList();
-    Helper.getSummonerMatch(matchList, summoner.getAccountId());
-    
-    System.out.println("Name: "+ summoner.getName());
-    System.out.println("Level: "+ summoner.getSummonerLevel());
-    System.out.println("player rank: "+ ranked.getTier()+ " "+ ranked.getRank()+ " LP: "+ ranked.getLeaguePoints());
-    System.out.println("Wins: "+ ranked.getWins());
-    System.out.println("Losses: "+ ranked.getLosses());
-    System.out.println("Winstreak? "+ranked.isHotStreak());
-    System.out.println("New player? "+ ranked.isFreshBlood());
-    System.out.println("Veteran player? "+ ranked.isVeteran());
-    System.out.println("Inactive player? "+ ranked.isInactive());
-    
-    float win = ranked.getWins();
-    float loss = ranked.getLosses();
-    float winR = win/(win+loss)*100;
-    System.out.println("RATIO "+ winR);
-    
-    model.put("names", summoner.getName());
-    model.put("levels", summoner.getSummonerLevel());
-    model.put("tiers", ranked.getTier());
-    model.put("ranks",ranked.getRank());
-    model.put("lps", ranked.getLeaguePoints());
-    model.put("wins", ranked.getWins());
-    model.put("losses", ranked.getLosses());
-    model.put("winstreak",ranked.isHotStreak());
-    model.put("news", ranked.isFreshBlood());
-    model.put("veterans", ranked.isVeteran());
-    model.put("inactives", ranked.isInactive());
-    model.put("pfps", summoner.getProfileIconId());
-    model.put("winratio", winR);
-
-    for (int i=0; i<6; i++){
-      model.put("platformId"+(i), matchList.getMatch(i).getPlatformId());
-      model.put("gameId"+(i), matchList.getMatch(i).getGameId());
-      model.put("champion"+(i),matchList.getMatch(i).getChampionName());
-      model.put("queue"+(i),matchList.getMatch(i).getMatchType());
-      model.put("season"+(i),matchList.getMatch(i).getSeason());
-
-      calendar.setTimeInMillis(matchList.getMatch(i).getTimestamp());
-      model.put("timestamp"+(i),sdf.format(calendar.getTime()));
-      model.put("role"+(i),"role"+(i));
-      model.put("lane"+(i),matchList.getMatch(i).getLane());
-    }
-    return "main";
-  }
-  
 	
   public static void main(String[] args) throws Exception {
-
-
+    //testing output on terminal
     SpringApplication.run(Main.class, args);
     String pid = "Delicious";
     Summoner summoner = new Summoner();
@@ -265,26 +180,6 @@ public class Main {
   }
 
 
-  @RequestMapping("/db")
-  String db(Map<String, Object> model) {
-    try (Connection connection = dataSource.getConnection()) {
-      Statement stmt = connection.createStatement();
-      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-      stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-      ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-
-      ArrayList<String> output = new ArrayList<String>();
-      while (rs.next()) {
-        output.add("Read from DB: " + rs.getTimestamp("tick"));
-      }
-
-      model.put("records", output);
-      return "db";
-    } catch (Exception e) {
-      model.put("message", e.getMessage());
-      return "error";
-    }
-  }
 
   @Bean
   public DataSource dataSource() throws SQLException {
