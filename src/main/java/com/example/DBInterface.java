@@ -1,9 +1,7 @@
 package com.example;
 
-import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Map;
+
 class Db{
     Connection connection;
     Db() {//constructor for an object that simply containts a db (postgres) connection. Only works locally, not on Heroku, as password and username and hardcoded right now.

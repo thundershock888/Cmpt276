@@ -19,7 +19,7 @@ public class getChampTest {
         assertEquals("Aatrox",championRead.getId());
         assertEquals("Aatrox",championRead.getName());
         assertEquals("the Darkin Blade", championRead.getTitle());
-        assertNotNull(championRead.getBlurb());
+        assertNotNull(championRead.getLore());
         assertEquals(8, championRead.getInfoAttack());
         assertEquals(4,championRead.getInfoDefense());
         assertEquals(3, championRead.getInfoMagic());

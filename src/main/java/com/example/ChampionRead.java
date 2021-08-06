@@ -1,6 +1,5 @@
 package com.example;
 
-import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +8,7 @@ public class ChampionRead{
 	private String id;
 	private String key;
     private String title;
-	private String blurb;
+	private String lore;
 	private String name;
 	private Integer attack;
 	private Integer defense;
@@ -19,12 +18,8 @@ public class ChampionRead{
 	private String image;
 	private String tags;
 	private String tags1;
-	//private Stats stats;
-
-/*
-		
-	private List<String> tags;*/
-	
+	private String passive;
+	private String passiveimg;
 	public String getId(){
 		return id;
 	}
@@ -45,11 +40,11 @@ public class ChampionRead{
     public void setTitle(String title){
 		this.title = title;
 	}
-	public String getBlurb(){
-		return blurb;
+	public String getLore(){
+		return lore;
 	}
-	public void setBlurb(String blurb){
-		this.blurb = blurb;
+	public void setLore(String lore){
+		this.lore = lore;
 	}
 	public String getName(){
 		return name;
@@ -106,13 +101,18 @@ public class ChampionRead{
 	public void setTags1(String tags1){
 		this.tags1 = tags1;
 	}
-	/*
-	public Stats getStats(){
-		return stats;
+	public String getPassive(){
+		return passive;
 	}
-	public void setStats(Stats stats){
-		this.stats = stats;
-	}*/
+	public void setPassive(String passive){
+		this.passive = passive;
+	}
+	public String getPassiveImg(){
+		return passiveimg;
+	}
+	public void setPassiveImg(String passiveimg){
+		this.passiveimg = passiveimg;
+	}
 
 	public static void getChampion(ChampionRead championRead, String name){
 		try{
@@ -123,7 +123,7 @@ public class ChampionRead{
 		  championRead.setKey(node.get("data").get(name).get("key").asText());
 		  championRead.setTitle(node.get("data").get(name).get("title").asText());
 		  championRead.setName(node.get("data").get(name).get("name").asText());
-		  championRead.setBlurb(node.get("data").get(name).get("blurb").asText());
+		  championRead.setLore(node.get("data").get(name).get("lore").asText());
 		  championRead.setInfoAttack(node.get("data").get(name).get("info").get("attack").asInt());
 		  championRead.setInfoDefense(node.get("data").get(name).get("info").get("defense").asInt());
 		  championRead.setInfoMagic(node.get("data").get(name).get("info").get("magic").asInt());
@@ -132,10 +132,10 @@ public class ChampionRead{
 		  championRead.setImage(node.get("data").get(name).get("image").get("full").asText());
 		  championRead.setTags(node.get("data").get(name).get("tags").get(0).asText());
 		  championRead.setTags1(node.get("data").get(name).get("tags").get(1).asText());
-		
+		  championRead.setPassive(node.get("data").get(name).get("passive").get("name").asText());
+		  championRead.setPassiveImg(node.get("data").get(name).get("passive").get("image").get("full").asText());
 		}catch(JsonProcessingException e){
 		  e.printStackTrace();
 		}
-	}
-
+}
 }

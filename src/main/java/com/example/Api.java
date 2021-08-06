@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 import com.mysql.cj.xdevapi.JsonArray;
 
 public class Api {
-    //public static String key = System.getenv().get("RIOT_API_KEY");
-    public static String key;
+    public static String key = System.getenv().get("RIOT_API_KEY");
+    /*public static String key;
     
 
      static {
@@ -30,7 +30,7 @@ public class Api {
          if(key.length()<10){
              key = System.getenv().get("RIOT_API_KEY");
          }
-     }
+     }*/
 
 
     private static HttpURLConnection connection;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Champion information</title>
+    <title>Champion Information</title>
     <link rel="stylesheet" href="/stylesheets/main.css">
     
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	-->
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" th:href="@{/images/lol-icon.png}">
     <script data-main="api" src="require.js" defer></script>
-    
+    <link rel="stylesheet" href="/stylesheets/champion.css">
 </head>
 <body>
     
@@ -69,32 +69,26 @@
         </ul>
       </div>
   </nav>
-  
+
   <div class = "content">
     <img id = "backgroundimage" th:src="@{/images/background.jpg}">
   </div>
     <!--Champion table-->
-    <table class="container">
-        <tr>
-            <th ><img th:src="@{/images/champion/{image}(image=${image})}" ></th>
+    <div  class="row">
+        <div class="column">
+    <table class="container" >
+        <tr colspan="3">
+            <td class="center-align"><img th:src="@{/images/champion/{image}(image=${image})}"><p>
+                <h5 th:text="${names}"> </h5><p th:text="${titles}"></p></p></th>
         </tr>
-        <tr>
-            <th class="head">Champion name:</th>
-            <td th:text="${names}"></td>
-        </tr>
-        <tr>
-            <th th:text="${titles}"></th>
-        </tr>
-        <tr>
-            <td colspan="2" th:text="${blurbs}"></td>
-        </tr>
+            <td class="center-align">  <span colspan="3" th:text="${lores}"></span> </td>
     </table>
 
     <table class="container">
         <tr>
-            <th class="head">Information:</th>
+            <td colspan="3"class="center-align">Information</th>
         </tr>
-        <tr>
+        <tr >
             <td>
                 <ul>
                     <li>Attack:</li>
@@ -102,87 +96,85 @@
                     <li>Defense:</li>
                     <li>Difficulty:</li>
                     <li>Partype:</li>
+                    <li>Legacy Class:
                 </ul>
                 <td>
                     <ul>
-                        <li th:text="${attacks}"></li>
-                        <li th:text="${magics}"></li>
-                        <li th:text="${defenses}"></li>
-                        <li th:text="${difficultys}"></li>
-                        <li th:text="${partypes}"></li>
+                        <li style="font-weight: lighter;" th:text="${attacks}"></li>
+                        <li style="font-weight: lighter;" th:text="${magics}"></li>
+                        <li style="font-weight: lighter;" th:text="${defenses}"></li>
+                        <li style="font-weight: lighter;"th:text="${difficultys}"></li>
+                        <li style="font-weight: lighter;"th:text="${partypes}"></li>
+                        <li><span th:text="${tag}" ></span>, <span th:text="${tag1}"></span></li>
                     </ul>
                 </td>
-            </td>
-        </tr>
-        <tr>
-            <td>Legacy Class: </td>
-            <td>
-                <ul>
-                    <li th:text="${tag}"></li>
-                    <li th:text="${tag1}"></li>
-                </ul>
-            </td>
         </tr>
     </table>
+    </div>
+    <div class="column">
     <table class="container">
+
         <tr>
-            <th>Champion Stats:</th>
+            <td class="center-align" colspan="4">Health & Resources</th>
         </tr>
         <tr>
-            <td>
-                <ul>
-                    <li>mpregens</li>
-                    <li>attackdamageperlevels</li>
-                    <li>mp</li>
-                    <li>attackranges</li>
-                    <li>hps<li>
-                    <li>hpperlevels</li>
-                    <li>hpregens</li>
-                    <li>mpregenperlevels</li>
-                    <li>spellblocks</li>
-                    <li>critperlevels</li>
-                    <li>movespeeds</li>
-                    <li>mpperlevels</li>
-                    <li>armors</li>
-                    <li>armorperlevels</li>
-                    <li>crits</li>
-                    <li>attackdamages</li>
-                    <li>attackspeeds</li>
-                    <li>spellblockperlevels</li>
-                    <li>attackspeedperlevels</li>
-                    <li>hpregenperlevels</li>
-                    
-                </ul>
+            <td>Health HP (+perlevel): 
+                <p><span th:text="${hps}"></span>
+                +<span th:text="${hpperlevels}"></span></p>
             </td>
-            <td>
-                <ul>
-                    <li th:text="${mpregens}"></li> 
-                    <li th:text="${attackdamageperlevels}"></li> 
-                    <li th:text="${mp}"></li> 
-                    <li th:text="${attackranges}"></li> 
-                    <li th:text="${hps}"></li> 
-                    <li th:text="${hpperlevels}"></li> 
-                    <li th:text="${hpregens}"></li> 
-                    <li th:text="${mpregenperlevels}"></li> 
-                    <li th:text="${spellblocks}"></li> 
-                    <li th:text="${critperlevels}"></li> 
-                    <li th:text="${movespeeds}"></li> 
-                    <li th:text="${mpperlevels}"></li> 
-                    <li th:text="${armors}"></li> 
-                    <li th:text="${armorperlevels}"></li> 
-                    <li th:text="${crits}"></li> 
-                    <li th:text="${attackdamages}"></li> 
-                    <li th:text="${attackspeeds}"></li> 
-                    <li th:text="${spellblockperlevels}"></li> 
-                    <li th:text="${attackspeedperlevels}"></li> 
-                    <li th:text="${hpregenperlevels}"></li> 
-                </ul>
+            <td>Health HP Regen. (+perlevel): 
+                <p><span th:text="${hpregens}"></span>
+                +<span th:text="${hpregenperlevels}"></span></p></td>
+            <td>Resources MP (+perlevel): 
+                <p><span th:text="${mp}"></span>
+                +<span th:text="${mpperlevels}"></span></p></td>
+            <td>Resources MP Regen. (+perlevel): 
+                <p><span th:text="${mpregens}"></span>
+                +<span th:text="${mpregenperlevels}"></span></p></td>
             </td>
-            <td></td>
-            <td>
-                
+        </tr>
+            <td>Move Speed (+perlevel): 
+                <p><span th:text="${armors}"></span>
+                +<span th:text="${armorperlevels}"></span></p></td>
+            <td>Spell Block (+perlevel): 
+                <p><span th:text="${spellblocks}"></span>
+                +<span th:text="${spellblockperlevels}"></span></p> </td>
+            <td>Crit (+perlevel): 
+                <p><span th:text="${crits}"></span>
+                +<span th:text="${critperlevels}"></span></p></td>
+        <tr>   
+        </tr>
+        <tr>
+            <td class="center-align" colspan="4">Attack</th>
+        </tr>
+        <tr>
+            <td>Attack Range: 
+                <p></p><span th:text="${attackranges}"></span></p></td>
+            <td>Attack Damage (+perlevel):
+                <p><span th:text="${attackdamages}"></span>
+                +<span th:text="${attackdamageperlevels}"></span></p></td>
+            <td>Attack Speed (+perlevel):
+                <p><span th:text="${attackspeeds}"></span>
+                +<span th:text="${attackspeedperlevels}"></span></p></td>
+        </tr>
+        <tr>
+            <td class="center-align" colspan="4">Abilities</td>
+        </tr>
+        <tr >
+            <td colspan="2">Spells:
+                <ul>
+                    <li style="font-weight: lighter;" th:text="${spells0}"></li>
+                    <li style="font-weight: lighter;"th:text="${spells1}"></li>
+                    <li style="font-weight: lighter;"th:text="${spells2}"></li>
+                    <li style="font-weight: lighter;"th:text="${spells3}"></li>
+                </ul> 
+            </td>
+            <td ><span th:text="${passives}"></span>
+
+                <img th:src="@{/images/passive/{passimg}(passimg=${passimg})}">
             </td>
         </tr>
     </table> 
+</div>
     <br>
 </body>

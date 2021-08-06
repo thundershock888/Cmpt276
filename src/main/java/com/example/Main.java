@@ -90,19 +90,21 @@ public class Main {
     ChampionRead.getChampion(championRead, name);
     Stats stats = new Stats();
     Stats.getChampionStats(stats, name);
+    Spells spells = new Spells();
+    Spells.getChampSpell(spells, name);
     System.out.println("champ id :"+ championRead.getId());
     System.out.println("champ key:"+ championRead.getKey());
     System.out.println("champ title :"+ championRead.getTitle());
     System.out.println("Champ name :" + championRead.getName());
-    System.out.println("champ blurb :"+ championRead.getBlurb());
+    System.out.println("champ lore :"+ championRead.getLore());
     System.out.println("champ attack :"+ championRead.getInfoAttack()+" magic: "+ championRead.getInfoMagic()+" defense: " 
           +championRead.getInfoDefense()+" difficulty:"+ championRead.getInfoDifficulty());
     System.out.println("champ partype: "+championRead.getPartype());
-    
+    System.out.println( championRead.getPassiveImg());
 
     model.put("names", championRead.getName());
     model.put("titles", championRead.getTitle());
-    model.put("blurbs", championRead.getBlurb());
+    model.put("lores", championRead.getLore());
     model.put("attacks",championRead.getInfoAttack());
     model.put("magics", championRead.getInfoMagic());
     model.put("defenses", championRead.getInfoDefense());
@@ -131,10 +133,15 @@ public class Main {
     model.put("spellblockperlevels", stats.getSpellblockperlevel());
     model.put("attackspeedperlevels", stats.getAttackspeedperlevel());
     model.put("hpregenperlevels", stats.getHpregenperlevel());
-
+    model.put("spells0", spells.getName0());
+    model.put("spells1", spells.getName1());
+    model.put("spells2", spells.getName2());
+    model.put("spells3", spells.getName3());
+    model.put("passives", championRead.getPassive());
+    model.put("passimg", championRead.getPassiveImg());
 
     return "champion";
-    
+
   }
   //when you click on a match
   @GetMapping("/match")
@@ -249,11 +256,13 @@ public class Main {
     ChampionRead.getChampion(championRead, id);
     Stats stats = new Stats();
     Stats.getChampionStats(stats, id);
+    Spells spells = new Spells();
+    Spells.getChampSpell(spells, id);
     System.out.println("champ id :"+ championRead.getId());
     System.out.println("champ key:"+ championRead.getKey());
     System.out.println("champ title :"+ championRead.getTitle());
     System.out.println("Champ name :" + championRead.getName());
-    System.out.println("champ blurb :"+ championRead.getBlurb());
+    System.out.println("champ lore :"+ championRead.getLore());
     System.out.println("champ attack :"+ championRead.getInfoAttack()+" magic: "+ championRead.getInfoMagic()+" defense: " 
           +championRead.getInfoDefense()+" difficulty:"+ championRead.getInfoDifficulty());
     System.out.println("champ partype: "+championRead.getPartype());
@@ -261,6 +270,9 @@ public class Main {
     System.out.println("champ tag: "+championRead.getTags());
     System.out.println("champ stats: "+stats.getMpregen());
     System.out.println("champ damageperlevel: "+stats.getAttackdamageperlevel());
+    System.out.println("champ passive: "+ championRead.getPassive());
+    System.out.println("champ spell1: "+spells.getName0());
+    System.out.println("champ spell2: "+spells.getName1());
 
   }
 
