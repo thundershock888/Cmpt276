@@ -101,6 +101,20 @@ public class Stats{
 	private int perk4Var2;
 	private int perk4Var1;
 	private int perk4Var3;
+	private String KDA;
+	private String userName;
+
+	public String getKDA() {
+		return KDA;
+	}
+
+	public void setKDA(String KDA) {
+		this.KDA = KDA;
+	}
+
+	public void setObjectivePlayerScore(int i){
+		objectivePlayerScore = i;
+	}
 
 	public int getTotalUnitsHealed(){
 		return totalUnitsHealed;
@@ -500,5 +514,14 @@ public class Stats{
 
 	public int getPerk4Var3(){
 		return perk4Var3;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String s){
+		userName = s;
+
 	}
 }

@@ -72,11 +72,17 @@ public class matchController {
              ) {
             stats.add(p.getStats());
         }
+        for (int i = 0; i < stats.size(); i++) {
+            Stats stat = stats.get(i);
+            stats.get(i).setUserName(players.get(i).getSummonerName());
+            stats.get(i).setKDA(Integer.toString(stat.getKills())+ "-" + Integer.toString(stat.getDeaths())+ "-" + Integer.toString(stat.getAssists()));
+            stat.setObjectivePlayerScore(stat.getTurretKills()+stat.getInhibitorKills()+stat.getObjectivePlayerScore());
+        }
+
 
 
 
         model.addAttribute("stats", stats);
-        model.addAttribute("players", players);
 
         return "match";
     }
