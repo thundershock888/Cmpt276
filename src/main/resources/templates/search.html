@@ -15,8 +15,6 @@
 </head>
 
 <body>
-  <script src="api.js"></script>
-  
   
   <div class="basic-header-1">
     <div class="logo">
@@ -75,6 +73,8 @@
       <table class="container">
         <thead>
         <tr>
+          <th><input style="display: none;" name="pf" th:value=${pfps}></th>
+          
           <th class="head">Summoner name: </th>
           <td th:text="${names}"></td>
         </tr>
