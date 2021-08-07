@@ -124,11 +124,11 @@ public class Main {
     return "champion";
 
   }
-	
+
   public static void main(String[] args) throws Exception {
     //testing output on terminal
     SpringApplication.run(Main.class, args);
-    String pid = "Delicious";
+  /*  String pid = "Delicious";
     Summoner summoner = new Summoner();
     Helper.getSummoner(summoner, pid);
 
@@ -176,7 +176,7 @@ public class Main {
     System.out.println("champ passive: "+ championRead.getPassive());
     System.out.println("champ spell1: "+spells.getName0());
     System.out.println("champ spell2: "+spells.getName1());
-
+*/
   }
 
 

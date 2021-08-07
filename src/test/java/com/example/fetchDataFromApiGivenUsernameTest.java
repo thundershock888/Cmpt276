@@ -17,7 +17,6 @@ public class fetchDataFromApiGivenUsernameTest {
     public void ApiTestGetSummInfo(){
         //test Api grabbing json summoner info with summoner name 
         assertTrue(Api.fetchDataFromApiGivenUsername(name).contains("Delicious"));
- 
     }
 
 }

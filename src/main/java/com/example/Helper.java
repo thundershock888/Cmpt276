@@ -53,7 +53,7 @@ public class Helper {
         }
         try{
             JsonNode node = (new ObjectMapper()).readTree(Api.fetchDataFromApiGivenUsername(name));
-            System.out.println("getSummoner: "+ node);
+            //System.out.println("getSummoner: "+ node);
 
             summoner.setAccountId(node.get("accountId").asText());
             summoner.setProfileIconId(node.get("profileIconId").asInt());
@@ -72,7 +72,7 @@ public class Helper {
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode node = objectMapper.readTree(Api.getRankedLeagueData(id));
-            System.out.println("getRanked: "+ node);
+            //System.out.println("getRanked: "+ node);
 
             ranked.setLeagueId(node.get(0).get("leagueId").asText());
             ranked.setSummonerId(node.get(0).get("summonerId").asText());
@@ -112,11 +112,11 @@ public class Helper {
             matchList.setStartIndex(node.get("startIndex").asInt());
             matchList.setTotalGames(node.get("totalGames").asInt());
             matchList.setEndIndex(node.get("endIndex").asInt());
-            System.out.println("data saved");
+            //System.out.println("data saved");
 
             JsonNode champJson = (new ObjectMapper()).readTree(Api.getChampionName());
             JsonNode matchJson = (new ObjectMapper()).readTree(Api.getMatchTypes());
-            System.out.println("printing match json: "+matchJson.get(64));
+            //System.out.println("printing match json: "+matchJson.get(64));
 
 
             for(int i = matchList.getStartIndex(); i< matchList.getEndIndex(); i++){
