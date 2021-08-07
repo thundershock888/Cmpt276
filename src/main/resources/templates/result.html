@@ -32,37 +32,53 @@
 
 <nav class="nav" >
     <div class="nav-wrapper" >
-        <ul id="nav-mobile">
+        <ul id="nav-mobile" >
             <li>
-                <form th:action="@{/pie}" method="get">
-                    <div class="row">
-                        <div class="input-field col s10">
-                            <input type="text" id="name" name="name" placeholder="Search summoner" required></div>
+                <div class="search right" >
+                    <form th:action="@{/pie}" method="get">
+                        <div class="row">
+                            <div class="input-field col s10">
+                                <input type="text" id="name" name="name" placeholder="Search summoner" required class="searchTerm"></div>
                         <div class="input-field ">
                             <div class="col s1">
-                                <button class="searchButton" id="searchButton">
-                                    <i class="material-icons">search</i>
+                                <button class="searchButton" id="searchButton" >
+                                <i class="material-icons" >search</i>
                             </div>
-                            </button>
-                        </div>
-                </form>
-            </li>
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
-            <li class="logged-out" style = "display:none">
-                <a href="#" class="modal-trigger" data-target="modal-login">Login</a></li>
-            <li class="logged-out" style = "display:none">
-                <a href="#" class="modal-trigger" data-target="modal-signup">Create Account</a></li>
-            <li class="logged-in" style = "display:none">
-                <a href="#" class="modal-trigger" data-target="modal-account">Account</a></li>
-            <li class="logged-in" style = "display:none">
-                <a href="#" class="modal-trigger" id="logout">Logout</a></li>
-
-
-
+                        </button></div>
+                      </form>
+                </div>
+             </li>
+        
+          <li><a href="./" class="nav-link">Home</a></li>
+          <li><a href="#" class="modal-trigger" data-target="modal-about-us">About Us</a></li>
+          <li><a href="https://discord.com/api/oauth2/authorize?client_id=867915260370231357&permissions=103079319552&scope=bot" class="nav-link">Invite our Bot</a></li>
+          <li class="logged-out" style = "display:none">
+              <a href="#" class="modal-trigger" data-target="modal-login">Login</a></li>
+          <li class="logged-out" style = "display:none">
+              <a href="#" class="modal-trigger" data-target="modal-signup">Create Account</a></li>
+          <li class="logged-in" style = "display:none">
+              <a href="#" class="modal-trigger" data-target="modal-account">Account</a></li>
+          <li class="logged-in" style = "display:none">
+              <a href="#" class="modal-trigger" id="logout">Logout</a></li>
+              <li>
+                <div class="search right" >
+                    <form th:action="@{/champ}" method="get">
+                        <div class="row">
+                            <div class="input-field col s10">
+                                <input type="text" id="name" name="name" placeholder="Search Champion" required label="input-field" class="searchTerm"></div>
+                        <div class="input-field ">
+                            <div class="col s1">
+                                <button class="searchButton" id="searchButton" >
+                                <i class="material-icons" >search</i>
+                            </div>
+                        </button></div>
+                      </form>
+                </div>
+             </li><!--
+             <li><a href="./Champions/champions.html" class="modal-trigger" data-target="modal-champions">Champions</a></li>-->
         </ul>
-    </div>
-</nav>
+      </div>
+  </nav>
 
 <div class = "content">
     <img id = "backgroundimage" th:src="@{/images/background.jpg}">
